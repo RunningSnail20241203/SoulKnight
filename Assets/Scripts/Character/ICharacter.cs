@@ -43,6 +43,7 @@ namespace Character
         {
             if (!_isInit)
             {
+                _isInit = true;
                 OnInit();
             }
             OnCharacterUpdate();
