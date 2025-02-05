@@ -22,19 +22,16 @@ namespace Character
             set
             {
                 _isLeft = value;
-                if(value)
-                    Transform.rotation = Quaternion.Euler(0,0,180f);
-                else 
-                    Transform.rotation = Quaternion.identity;
+                Transform.rotation = value ? Quaternion.Euler(0, 180f, 0) : Quaternion.identity;
             }
         }
+
         public GameObject GameObject { get; protected set; }
         public Transform Transform => GameObject.transform;
-        
 
         #endregion
 
-        public ICharacter(GameObject gameObject)
+        protected ICharacter(GameObject gameObject)
         {
             this.GameObject = gameObject;
         }
@@ -46,6 +43,7 @@ namespace Character
                 _isInit = true;
                 OnInit();
             }
+
             OnCharacterUpdate();
         }
 
@@ -54,8 +52,13 @@ namespace Character
             _isShouldRemove = true;
         }
 
-        protected virtual void OnInit() { }
-        protected virtual void OnCharacterStart() { }
+        protected virtual void OnInit()
+        {
+        }
+
+        protected virtual void OnCharacterStart()
+        {
+        }
 
         protected virtual void OnCharacterUpdate()
         {
@@ -65,7 +68,13 @@ namespace Character
                 OnCharacterStart();
             }
         }
-        protected virtual void OnCharacterDieStart(){}
-        protected virtual void OnCharacterDieUpdate(){}
+
+        protected virtual void OnCharacterDieStart()
+        {
+        }
+
+        protected virtual void OnCharacterDieUpdate()
+        {
+        }
     }
 }

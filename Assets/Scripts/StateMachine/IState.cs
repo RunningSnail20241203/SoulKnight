@@ -2,13 +2,13 @@ namespace StateMachine
 {
     public abstract class IState
     {
-        protected IStateMachine _stateMachine;
+        protected readonly IStateMachine StateMachine;
         private bool _isInit;
         private bool _isEnter;
-        
-        public IState(IStateMachine stateMachine)
+
+        protected IState(IStateMachine stateMachine)
         {
-            this._stateMachine = stateMachine;
+            StateMachine = stateMachine;
         }
 
         public virtual void OnExit()
@@ -16,7 +16,17 @@ namespace StateMachine
             _isEnter = false;
         }
 
-        public virtual void OnUpdate()
+        public void GameUpdate()
+        {
+            if (!_isInit)
+            {
+                _isInit = true;
+                OnInit();
+            }
+            OnUpdate();
+        }
+
+        protected virtual void OnUpdate()
         {
             if (!_isEnter)
             {
@@ -28,14 +38,7 @@ namespace StateMachine
         
         
 
-        protected virtual void OnEnter()
-        {
-            if (!_isInit)
-            {
-                _isInit = true;
-                OnInit();
-            }
-        }
+        protected virtual void OnEnter() { }
         protected virtual void OnInit(){}
         
     }

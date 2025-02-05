@@ -5,13 +5,8 @@ namespace StateMachine
 {
     public abstract class IStateMachine
     {
-        private Dictionary<Type, IState> _stateDic;
+        private readonly Dictionary<Type, IState> _stateDic = new();
         private IState _currentState;
-
-        public IStateMachine()
-        {
-            _stateDic = new Dictionary<Type, IState>();
-        }
 
         public void SetState<T>() where T : IState
         {
@@ -36,7 +31,7 @@ namespace StateMachine
         {
             if (_currentState != null)
             {
-                _currentState.OnUpdate();
+                _currentState.GameUpdate();
             }
         }
     }

@@ -25,7 +25,7 @@ namespace StateMachine.PlayerStateMachine.Knight
             Animator.SetBool(IsIdle, false);
         }
 
-        public override void OnUpdate()
+        protected override void OnUpdate()
         {
             base.OnUpdate();
             
@@ -34,7 +34,7 @@ namespace StateMachine.PlayerStateMachine.Knight
             _moveDir.Set(_hor, _ver);
             if (_moveDir.magnitude > 0f)
             {
-                _stateMachine.SetState<KnightWalkState>();
+                StateMachine.SetState<KnightWalkState>();
             }
         }
     }

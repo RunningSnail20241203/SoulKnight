@@ -11,7 +11,7 @@ namespace StateMachine.PlayerStateMachine.Knight
         {
         }
 
-        public override void OnUpdate()
+        protected override void OnUpdate()
         {
             base.OnUpdate();
             _hor = Input.GetAxis("Horizontal");
@@ -19,13 +19,22 @@ namespace StateMachine.PlayerStateMachine.Knight
             _moveDir.Set(_hor, _ver);
             if (_moveDir.magnitude > 0)
             {
-                Rigidbody2D.transform.position += (Vector3)_moveDir * 8 * Time.deltaTime;
+                Rigidbody2D.transform.position += (Vector3)_moveDir.normalized * (8 * Time.deltaTime);
+            }
+
+            if (_hor > 0)
+            {
+                Player.IsLeft = false;
+            }else if (_hor < 0)
+            {
+                Player.IsLeft = true;
             }
 
             if (_moveDir.magnitude == 0)
             {
-                _stateMachine.SetState<KnightIdleState>();
+                StateMachine.SetState<KnightIdleState>();
             }
+            
         }
     }
 }

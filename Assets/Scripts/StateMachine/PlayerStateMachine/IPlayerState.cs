@@ -11,11 +11,11 @@ namespace StateMachine.PlayerStateMachine
         protected Transform Transform => Player.Transform;
         protected Rigidbody2D Rigidbody2D => Player.PlayerRigidbody2D;
         protected Animator Animator => Player.PlayerAnimator;
-        public PlayerStateMachine PlayerStateMachine => _stateMachine as PlayerStateMachine;
+        private PlayerStateMachine PlayerStateMachine => StateMachine as PlayerStateMachine;
         #endregion
-       
 
-        public IPlayerState(PlayerStateMachine stateMachine) : base(stateMachine) { }
+
+        protected IPlayerState(PlayerStateMachine stateMachine) : base(stateMachine) { }
 
         protected override void OnEnter()
         {
@@ -23,9 +23,5 @@ namespace StateMachine.PlayerStateMachine
             Debug.Log(this);
         }
 
-        protected override void OnInit()
-        {
-            base.OnInit();
-        }
     }
 }

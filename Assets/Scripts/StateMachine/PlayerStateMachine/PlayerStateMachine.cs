@@ -2,7 +2,7 @@ using Character;
 
 namespace StateMachine.PlayerStateMachine
 {
-    public class PlayerStateMachine :IStateMachine
+    public class PlayerStateMachine : IStateMachine
     {
         public IPlayer Player { get; set; }
 
