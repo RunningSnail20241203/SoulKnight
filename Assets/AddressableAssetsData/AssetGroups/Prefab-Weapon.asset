@@ -1,0 +1,29 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: bbb281ee3bf0b054c82ac2347e9e782c, type: 3}
+  m_Name: Prefab-Weapon
+  m_EditorClassIdentifier: 
+  m_GroupName: Prefab-Weapon
+  m_Data:
+    m_SerializedData: []
+  m_GUID: 6cd6c7ae1e4ec1a4f99e4c60be06b045
+  m_SerializeEntries:
+  - m_GUID: 1d54569b4b3220241b4837bc4cdf0da4
+    m_Address: Weapon
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+  m_ReadOnly: 0
+  m_Settings: {fileID: 11400000, guid: 1a0302147fd76164c8488453882cd011, type: 2}
+  m_SchemaSet:
+    m_Schemas:
+    - {fileID: 11400000, guid: 3067b95ead9f7d14ebcf251c1d613cb3, type: 2}
+    - {fileID: 11400000, guid: 85059c6c5ae1ed54baaf4de990c7c938, type: 2}
