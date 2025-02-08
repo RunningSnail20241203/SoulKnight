@@ -26,5 +26,12 @@ namespace Controller
             base.AlwaysUpdate();
             _panelRoot.GameUpdate();
         }
+
+        public override void Destroy()
+        {
+            base.Destroy();
+            _panelRoot?.Destroy();
+            _panelRoot = null;
+        }
     }
 }

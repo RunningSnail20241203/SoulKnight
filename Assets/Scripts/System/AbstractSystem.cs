@@ -1,12 +1,13 @@
 ﻿namespace System
 {
-    public class AbstractSystem
+    public class AbstractSystem : IDestroy
     {
-        public AbstractSystem()
+        protected AbstractSystem()
         {
-            OnInit();
+            
         }
-        protected virtual void OnInit()
+
+        public virtual void Destroy()
         {
         }
     }

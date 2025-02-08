@@ -6,7 +6,7 @@ namespace Model
 {
     public class ModelContainer : Singleton<ModelContainer>
     {
-        private Dictionary<Type, AbstractModel> _models = new();
+        private readonly Dictionary<Type, AbstractModel> _models = new();
 
         public ModelContainer()
         {
@@ -15,7 +15,7 @@ namespace Model
         
         public T GetModel<T>() where T : AbstractModel
         {
-            if (_models.TryGetValue(typeof(T), out AbstractModel model))
+            if (_models.TryGetValue(typeof(T), out var model))
             {
                 return model as T;
             }

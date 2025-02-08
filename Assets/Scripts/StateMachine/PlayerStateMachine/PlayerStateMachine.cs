@@ -2,13 +2,19 @@ using Character;
 
 namespace StateMachine.PlayerStateMachine
 {
-    public class PlayerStateMachine : IStateMachine
+    public class PlayerStateMachine : AbstractStateMachine
     {
-        public IPlayer Player { get; set; }
+        public AbstractPlayer Player { get; private set; }
 
-        public PlayerStateMachine(IPlayer player)
+        public PlayerStateMachine(AbstractPlayer player)
         {
             Player = player;
+        }
+
+        public override void Destroy()
+        {
+            base.Destroy();
+            Player = null;
         }
     }
 }

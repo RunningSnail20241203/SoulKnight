@@ -1,7 +1,4 @@
-using Mediator;
-using Singleton;
-
-namespace GameLoop
+namespace Mediator
 {
     public class GameMediator : AbstractMediator
     {

@@ -2,7 +2,7 @@ using UnityEngine;
 
 namespace StateMachine.PlayerStateMachine.Knight
 {
-    public class KnightWalkState : IPlayerState
+    public class KnightWalkState : AbstractPlayerState
     {
         private float _hor, _ver;
         private Vector2 _moveDir;

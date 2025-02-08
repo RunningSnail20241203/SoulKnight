@@ -3,16 +3,16 @@ using System.Collections.Generic;
 
 namespace StateMachine
 {
-    public abstract class IStateMachine
+    public abstract class AbstractStateMachine : IDestroy
     {
-        private readonly Dictionary<Type, IState> _stateDic = new();
-        private IState _currentState;
+        private readonly Dictionary<Type, AbstractState> _stateDic = new();
+        private AbstractState _currentState;
 
-        public void SetState<T>() where T : IState
+        public void SetState<T>() where T : AbstractState
         {
             if (!_stateDic.ContainsKey(typeof(T)))
             {
-                _stateDic.Add(typeof(T), (IState)Activator.CreateInstance(typeof(T), this));
+                _stateDic.Add(typeof(T), (AbstractState)Activator.CreateInstance(typeof(T), this));
             }
 
             if (_currentState != null)
@@ -33,6 +33,11 @@ namespace StateMachine
             {
                 _currentState.GameUpdate();
             }
+        }
+
+        public virtual void Destroy()
+        {
+            _stateDic.Clear();
         }
     }
 }

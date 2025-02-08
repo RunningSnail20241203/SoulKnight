@@ -3,7 +3,7 @@ using UnityEngine;
 
 namespace Character.Player
 {
-    public class Knight : IPlayer
+    public class Knight : AbstractPlayer
     {
         public Knight(GameObject gameObject) : base(gameObject)
         {

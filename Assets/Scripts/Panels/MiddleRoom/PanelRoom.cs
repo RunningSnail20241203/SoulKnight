@@ -1,5 +1,6 @@
 ﻿using System;
 using GameLoop;
+using Mediator;
 using UnityEditor.Experimental.GraphView;
 using UnityEngine;
 using CameraType = System.CameraType;
@@ -39,11 +40,17 @@ namespace Panels.MiddleRoom
                     if (_collider2D)
                     {
                         _cameraSystem.SwitchCamera(CameraType.SelectCamera);
-                        _cameraSystem.SetSelectTarget(_collider2D.transform);
+                        _cameraSystem.SetSelectTarget(_collider2D.transform.parent);
                         EnterPanel<PanelSelectPlayer>();
                     }
                 }
             }
+        }
+
+        protected override void OnEnter()
+        {
+            base.OnEnter();
+            _cameraSystem.SwitchCamera(CameraType.StaticCamera);
         }
     }
 }

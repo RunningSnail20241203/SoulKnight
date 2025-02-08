@@ -3,10 +3,10 @@ using UnityEngine;
 
 namespace StateMachine.PlayerStateMachine
 {
-    public abstract class IPlayerState : IState
+    public abstract class AbstractPlayerState : AbstractState
     {
         #region Property
-        protected IPlayer Player => PlayerStateMachine.Player;
+        protected AbstractPlayer Player => PlayerStateMachine.Player;
         protected GameObject GameObject => Player.GameObject;
         protected Transform Transform => Player.Transform;
         protected Rigidbody2D Rigidbody2D => Player.PlayerRigidbody2D;
@@ -15,13 +15,7 @@ namespace StateMachine.PlayerStateMachine
         #endregion
 
 
-        protected IPlayerState(PlayerStateMachine stateMachine) : base(stateMachine) { }
-
-        protected override void OnEnter()
-        {
-            base.OnEnter();
-            Debug.Log(this);
-        }
+        protected AbstractPlayerState(PlayerStateMachine stateMachine) : base(stateMachine) { }
 
     }
 }

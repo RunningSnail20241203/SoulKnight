@@ -4,11 +4,6 @@
     {
         protected AbstractModel()
         {
-            OnInit();
-        }
-
-        protected virtual void OnInit()
-        {
             
         }
     }

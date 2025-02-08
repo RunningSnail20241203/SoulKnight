@@ -2,7 +2,7 @@ using UnityEngine;
 
 namespace StateMachine.PlayerStateMachine.Knight
 {
-    public class KnightIdleState : IPlayerState
+    public class KnightIdleState : AbstractPlayerState
     {
         private static readonly int IsIdle = Animator.StringToHash("isIdle");
         private float _hor, _ver;

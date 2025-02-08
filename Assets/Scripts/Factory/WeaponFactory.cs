@@ -13,7 +13,7 @@ namespace Factory
     {
         private const string WeaponOriginPoint = "GunOriginPoint";
 
-        public async Task<IPlayerWeapon> GetPlayerWeapon(PlayerWeaponType playerWeaponType, ICharacter owner)
+        public async Task<AbstractPlayerWeapon> GetPlayerWeapon(PlayerWeaponType playerWeaponType, AbstractCharacter owner)
         {
             var origin = UnityTool.Instance.FindTransformFromChildren(owner.GameObject, WeaponOriginPoint, true);
             var weaponName = playerWeaponType.ToString();
@@ -22,7 +22,7 @@ namespace Factory
             weaponObj.name = weaponName;
             weaponObj.transform.localPosition = Vector3.zero;
             
-            IPlayerWeapon ret = playerWeaponType switch
+            AbstractPlayerWeapon ret = playerWeaponType switch
             {
                 PlayerWeaponType.BadPistol => new BadPistol(weaponObj, owner),
                 PlayerWeaponType.Ak47 => new Ak47(weaponObj, owner),

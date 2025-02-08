@@ -2,6 +2,8 @@
 using Singleton;
 using UnityEngine;
 using UnityEngine.SceneManagement;
+using Utility;
+using EventType = Utility.EventType;
 
 namespace Command
 {
@@ -35,8 +37,9 @@ namespace Command
 
         private void OnSceneLoaded(AsyncOperation obj)
         {
-            _sceneModel.SetData(SceneManager.GetActiveScene().buildIndex);
             _isLoading = false;
+            _sceneModel.SetData(SceneManager.GetActiveScene().buildIndex);
+            EventCenter.Instance.NotifyObserver(EventType.SceneLoadComplete);
         }
 
         private int GetSceneIndexByName(SceneName sceneName)

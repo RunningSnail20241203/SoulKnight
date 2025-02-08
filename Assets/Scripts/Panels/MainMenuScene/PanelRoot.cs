@@ -1,3 +1,5 @@
+using Command;
+using Model;
 using UnityEngine;
 using Button = UnityEngine.UI.Button;
 
@@ -14,7 +16,7 @@ namespace Panels.MainMenuScene
             base.OnInit();
 
             UnityTool.Instance.FindComponentFromChildren<Button>(GameObject, "ButtonStart", true).onClick.AddListener(
-                () => { Debug.Log("开始游戏"); });
+                () => { SceneCommand.Instance.LoadScene(SceneName.MiddleRoomScene); });
         }
     }
 }

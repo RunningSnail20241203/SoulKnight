@@ -37,5 +37,15 @@ namespace Mediator
         {
             return _systems.Where(ac => ac.GetType() == typeof(T)).Cast<T>().FirstOrDefault();
         }
+
+        public void RemoveController(AbstractController controller)
+        {
+            _controllers.Remove(controller);
+        }
+
+        public void RemoveSystem(AbstractSystem system)
+        {
+            _systems.Remove(system);
+        }
     }
 }

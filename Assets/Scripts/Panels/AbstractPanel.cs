@@ -4,7 +4,7 @@ using UnityEngine;
 
 namespace Panels
 {
-    public abstract class AbstractPanel
+    public abstract class AbstractPanel : IDestroy
     {
         #region Property
 
@@ -17,13 +17,14 @@ namespace Panels
 
         #region Private Data
 
-        private readonly AbstractPanel _parent;
+        private AbstractPanel _parent;
         private bool _isInit;
         private bool _isEnter;
         private bool _isSuspend;
         private readonly bool _isShowAfterExit;
         private GameObject _mainCanvas;
         private const string MainCanvasName = "MainCanvas";
+        private bool _isDestroyed;
 
         #endregion
 
@@ -79,7 +80,7 @@ namespace Panels
         protected virtual void OnInit()
         {
             _isSuspend = true;
-            
+
             _mainCanvas = UnityTool.Instance.FindGameObjectInScene(MainCanvasName);
             if (GameObject == null)
             {
@@ -102,15 +103,19 @@ namespace Panels
             }
         }
 
-        protected virtual void OnExit()
+        protected void Exit()
         {
             if (!_isShowAfterExit)
             {
                 GameObject.SetActive(false);
             }
 
-            _parent._isEnter = false;
-            _parent.Resume();
+            if (_parent != null)
+            {
+                _parent._isEnter = false;
+                _parent.Resume();
+            }
+
             Suspend();
         }
 
@@ -119,6 +124,20 @@ namespace Panels
         protected AbstractPanel(AbstractPanel parent)
         {
             _parent = parent;
+        }
+
+        public virtual void Destroy()
+        {
+            if (_isDestroyed) return;
+            _isDestroyed = true;
+            
+            foreach (var panel in Children)
+            {
+                panel.Destroy();
+            }
+            Children.Clear();
+
+            _parent = null;
         }
     }
 }

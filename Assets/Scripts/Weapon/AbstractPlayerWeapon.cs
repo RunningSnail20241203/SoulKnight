@@ -3,19 +3,18 @@ using UnityEngine;
 
 namespace Weapon
 {
-    public class IPlayerWeapon : IWeapon
+    public class AbstractPlayerWeapon : AbstractWeapon
     {
         private bool _isAttack;
         private readonly Transform _rotOrigin;
-        private bool _isUsed;
 
         #region Property
 
-        public bool IsUsed => _isUsed;
+        public bool IsUsed { get; private set; }
 
-        public new IPlayer Owner
+        public new AbstractPlayer Owner
         {
-            get => base.Owner as IPlayer;
+            get => base.Owner as AbstractPlayer;
             set => base.Owner = value;
         }
 
@@ -49,19 +48,21 @@ namespace Weapon
 
         public void UseWeapon()
         {
-            _isUsed = true;
+            // Debug.Log($"UseWeapon:{this}");
+            IsUsed = true;
             GameObject.SetActive(true);
         }
 
         public void UnUseWeapon()
         {
-            _isUsed = false;
+            // Debug.Log($"UnUseWeapon:{this}");
+            IsUsed = false;
             GameObject.SetActive(false);
         }
 
         #endregion
      
-        protected IPlayerWeapon(GameObject gameObject, ICharacter owner) : base(gameObject, owner)
+        protected AbstractPlayerWeapon(GameObject gameObject, AbstractCharacter owner) : base(gameObject, owner)
         {
             _rotOrigin = UnityTool.Instance.FindTransformFromChildren(gameObject, "RotOrigin", true);
         }

@@ -19,9 +19,8 @@ namespace Model
             };
         }
 
-        protected override void OnInit()
+        public SceneModel()
         {
-            base.OnInit();
             SetData(SceneManager.GetActiveScene().buildIndex);
         }
     }

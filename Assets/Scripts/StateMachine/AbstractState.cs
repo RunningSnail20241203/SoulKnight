@@ -1,12 +1,12 @@
 namespace StateMachine
 {
-    public abstract class IState
+    public abstract class AbstractState
     {
-        protected readonly IStateMachine StateMachine;
+        protected readonly AbstractStateMachine StateMachine;
         private bool _isInit;
         private bool _isEnter;
 
-        protected IState(IStateMachine stateMachine)
+        protected AbstractState(AbstractStateMachine stateMachine)
         {
             StateMachine = stateMachine;
         }

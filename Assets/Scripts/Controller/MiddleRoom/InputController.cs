@@ -26,6 +26,12 @@ namespace Controller.MiddleRoom
 
             Input.IsAttack = UnityEngine.Input.GetMouseButton(0);
         }
+
+        public override void Destroy()
+        {
+            base.Destroy();
+            Input = null;
+        }
     }
 
     public class PlayerControlInput

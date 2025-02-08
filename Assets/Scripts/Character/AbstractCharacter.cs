@@ -2,12 +2,11 @@ using UnityEngine;
 
 namespace Character
 {
-    public class ICharacter
+    public abstract class AbstractCharacter
     {
         #region Private Data
 
         private bool _isLeft;
-        private bool _isShouldRemove;
         private bool _isAlreadyRemove;
         private bool _isInit;
         private bool _isStart;
@@ -31,7 +30,7 @@ namespace Character
 
         #endregion
 
-        protected ICharacter(GameObject gameObject)
+        protected AbstractCharacter(GameObject gameObject)
         {
             this.GameObject = gameObject;
         }
@@ -45,11 +44,6 @@ namespace Character
             }
 
             OnCharacterUpdate();
-        }
-
-        public void Remove()
-        {
-            _isShouldRemove = true;
         }
 
         protected virtual void OnInit()

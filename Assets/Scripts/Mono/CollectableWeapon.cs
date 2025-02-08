@@ -9,7 +9,7 @@ namespace Mono
     {
         private const string PlayerTag = "Player";
         private bool _isPlayerEnter;
-        private IPlayer _player;
+        private AbstractPlayer _player;
 
         private void Update()
         {
@@ -34,7 +34,7 @@ namespace Mono
         {
             if (other.CompareTag(PlayerTag))
             {
-                Debug.Log("Player enter");
+                // Debug.Log("Player enter");
                 _isPlayerEnter = true;
                 _player = other.GetComponent<PlayerRef>().Player;
             }
@@ -44,9 +44,14 @@ namespace Mono
         {
             if (other.CompareTag(PlayerTag))
             {
-                Debug.Log("Player exit");
+                // Debug.Log("Player exit");
                 _isPlayerEnter = false;
             }
+        }
+
+        private void OnDestroy()
+        {
+            _player = null;
         }
     }
 }

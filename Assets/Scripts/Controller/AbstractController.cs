@@ -1,6 +1,6 @@
 namespace Controller
 {
-    public abstract class AbstractController
+    public abstract class AbstractController : IDestroy
     {
         private bool _isRun;
         private bool _isInit;
@@ -57,6 +57,11 @@ namespace Controller
         public void TurnOffController()
         {
             _isRun = false;
+        }
+
+        public virtual void Destroy()
+        {
+          
         }
     }
 }

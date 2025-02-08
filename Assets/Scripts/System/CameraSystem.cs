@@ -47,9 +47,8 @@ namespace System
             }
         }
 
-        protected override void OnInit()
+        public CameraSystem()
         {
-            base.OnInit();
             MainCamera = Camera.main;
             var cameraRoot = UnityTool.Instance.FindGameObjectInScene(CameraRoot);
             _staticCamera =

@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -11,6 +12,12 @@ namespace GameLoop
         private void Start()
         {
             _facade = new Facade.MainMenuScene.Facade();
+        }
+
+        private void OnDestroy()
+        {
+            _facade.Destroy();
+            _facade = null;
         }
 
 

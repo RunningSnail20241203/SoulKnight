@@ -8,29 +8,27 @@ using Weapon;
 
 namespace Character
 {
-    public class IPlayer : ICharacter
+    public class AbstractPlayer : AbstractCharacter, IDestroy
     {
         #region Private Data
 
-        private readonly Animator _animator;
-        private readonly Rigidbody2D _rigidbody2D;
-        private IPlayerWeapon _curWeapon;
-        private readonly List<IPlayerWeapon> _playerWeapons = new();
-        private Vector2 _mouseDir;
+        private AbstractPlayerWeapon _curWeapon;
+        private readonly List<AbstractPlayerWeapon> _playerWeapons = new();
         private PlayerControlInput _playerControlInput;
 
         #endregion
 
         #region Protected Data
 
-        protected readonly PlayerStateMachine StateMachine;
+        protected PlayerStateMachine StateMachine;
 
         #endregion
 
         #region Property
 
-        public Animator PlayerAnimator => _animator;
-        public Rigidbody2D PlayerRigidbody2D => _rigidbody2D;
+        public Animator PlayerAnimator { get; }
+
+        public Rigidbody2D PlayerRigidbody2D { get; }
 
         #endregion
 
@@ -41,7 +39,7 @@ namespace Character
             var weapon = await WeaponFactory.Instance.GetPlayerWeapon(playerWeaponType, this);
             if (_playerWeapons.Count == 0)
             {
-                weapon.UseWeapon();
+                UseWeapon(weapon);
             }
             else
             {
@@ -56,33 +54,29 @@ namespace Character
             _playerControlInput = playerControlInput;
         }
 
-        public void SwapWeapon()
+        public virtual void Destroy()
         {
-            if (_playerWeapons.Count == 0) return;
-            var index = _playerWeapons.FindIndex(x => x.IsUsed);
-            if (index < _playerWeapons.Count - 1)
-            {
-                index++;
-            }
-            else
-            {
-                index = 0;
-            }
+            StateMachine?.Destroy();
+            StateMachine = null;
 
-            if (_curWeapon != null)
+            foreach (var weapon in _playerWeapons)
             {
-                _curWeapon.UnUseWeapon();
+                weapon.Destroy();
             }
+            _playerWeapons.Clear();
+            
+            _curWeapon?.Destroy();
+            _curWeapon = null;
 
-            UseWeapon(_playerWeapons[index]);
+            _playerControlInput = null;
         }
 
         #endregion
 
-        protected IPlayer(GameObject gameObject) : base(gameObject)
+        protected AbstractPlayer(GameObject gameObject) : base(gameObject)
         {
-            _rigidbody2D = gameObject.GetComponent<Rigidbody2D>();
-            _animator = UnityTool.Instance.FindComponentFromChildren<Animator>(gameObject, "Sprite", true);
+            PlayerRigidbody2D = gameObject.GetComponent<Rigidbody2D>();
+            PlayerAnimator = UnityTool.Instance.FindComponentFromChildren<Animator>(gameObject, "Sprite");
             var playerRef = UnityTool.Instance.AddComponentForChildren<PlayerRef>(gameObject, "Collider", true);
             playerRef.SetPlayer(this);
             StateMachine = new PlayerStateMachine(this);
@@ -105,10 +99,27 @@ namespace Character
             }
         }
 
-        private void UseWeapon(IPlayerWeapon weapon)
+        private void UseWeapon(AbstractPlayerWeapon weapon)
         {
-            weapon.UseWeapon();
+            _curWeapon?.UnUseWeapon();
             _curWeapon = weapon;
+            _curWeapon.UseWeapon();
+        }
+
+        private void SwapWeapon()
+        {
+            if (_playerWeapons.Count == 0) return;
+            var index = _playerWeapons.FindIndex(x => x.IsUsed);
+            if (index < _playerWeapons.Count - 1)
+            {
+                index++;
+            }
+            else
+            {
+                index = 0;
+            }
+
+            UseWeapon(_playerWeapons[index]);
         }
     }
 }

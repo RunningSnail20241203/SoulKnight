@@ -3,15 +3,10 @@ using UnityEngine;
 
 namespace Weapon.PlayerWeapon
 {
-    public class BadPistol :IPlayerWeapon
+    public class BadPistol : AbstractPlayerWeapon
     {
-        public BadPistol(GameObject gameObject, ICharacter owner) : base(gameObject, owner)
+        public BadPistol(GameObject gameObject, AbstractCharacter owner) : base(gameObject, owner)
         {
-        }
-
-        protected override void OnFire()
-        {
-            base.OnFire();
         }
     }
 }

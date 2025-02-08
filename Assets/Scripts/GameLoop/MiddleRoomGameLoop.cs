@@ -16,5 +16,11 @@ namespace GameLoop
         {
             _facade.GameUpdate();
         }
+
+        private void OnDestroy()
+        {
+            _facade.Destroy();
+            _facade = null;
+        }
     }
 }

@@ -3,16 +3,16 @@ using UnityEngine;
 
 namespace Weapon
 {
-    public class IWeapon
+    public class AbstractWeapon : IDestroy
     {
-        public GameObject GameObject { get; protected set; }
-        public Transform Transform => GameObject.transform;
-        protected ICharacter Owner { get; set;}
+        protected GameObject GameObject { get; set; }
+        protected Transform Transform => GameObject.transform;
+        protected AbstractCharacter Owner { get; set;}
         protected bool IsCanRotate { get; private set; } // 控制武器能否被旋转
         private bool _isInit;
         private bool _isEnter;
 
-        protected IWeapon(GameObject gameObject, ICharacter owner)
+        protected AbstractWeapon(GameObject gameObject, AbstractCharacter owner)
         {   
             GameObject = gameObject;
             Owner = owner;
@@ -59,5 +59,9 @@ namespace Weapon
             _isEnter = false;
         }
         protected virtual void OnFire(){}
+        public virtual void Destroy()
+        {
+            Owner = null;
+        }
     }
 }

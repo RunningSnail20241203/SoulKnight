@@ -1,5 +1,6 @@
 using Controller;
 using GameLoop;
+using Mediator;
 
 namespace Facade.MainMenuScene
 {
@@ -19,6 +20,14 @@ namespace Facade.MainMenuScene
             base.OnUpdate();
 
             _uiController.GameUpdate();
+        }
+
+        public override void Destroy()
+        {
+            base.Destroy();
+            GameMediator.Instance.RemoveController(_uiController);
+            _uiController?.Destroy();
+            _uiController = null;
         }
     }
 }

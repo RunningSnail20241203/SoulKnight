@@ -1,15 +1,21 @@
-﻿using Character;
+﻿using System;
+using Character;
 using UnityEngine;
 
 namespace Mono
 {
     public class PlayerRef : MonoBehaviour
     {
-        public IPlayer Player { get; private set; }
+        public AbstractPlayer Player { get; private set; }
 
-        public void SetPlayer(IPlayer player)
+        public void SetPlayer(AbstractPlayer player)
         {
             Player = player;
+        }
+
+        private void OnDestroy()
+        {
+            Player = null;
         }
     }
 }

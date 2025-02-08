@@ -6,20 +6,24 @@ namespace Controller.MiddleRoom
 {
     public class PlayerController : AbstractController
     {
-        public IPlayer MainPlayer { get; protected set; }
+        public AbstractPlayer MainPlayer { get; private set; }
 
-        protected override void OnInit()
+        public void SetMainPlayer(PlayerType playerType)
         {
-            base.OnInit();
-
-            // MainPlayer = PlayerFactory.Instance.CreatePlayer(PlayerType.Knight);
-            // MainPlayer.SetPlayerControlInput(GameMediator.Instance.GetController<InputController>().Input);
+            MainPlayer = PlayerFactory.Instance.GetPlayer(playerType);
+        }
+        
+        protected override void OnAfterRunUpdate()
+        {
+            base.OnAfterRunUpdate();
+            MainPlayer?.GameUpdate();
         }
 
-        protected override void AlwaysUpdate()
+        public override void Destroy()
         {
-            base.AlwaysUpdate();
-            // MainPlayer.GameUpdate();
+            base.Destroy();
+            MainPlayer?.Destroy();
+            MainPlayer = null;
         }
     }
 }
