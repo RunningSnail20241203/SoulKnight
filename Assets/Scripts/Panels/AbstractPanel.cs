@@ -4,23 +4,30 @@ using UnityEngine;
 
 namespace Panels
 {
-    public abstract class IPanel
+    public abstract class AbstractPanel
     {
-        public GameObject GameObject { get; protected set; }
+        #region Property
+
         public Transform Transform => GameObject.transform;
         public RectTransform RectTransform { get; protected set; }
-        private readonly IPanel _parent;
-        private readonly List<IPanel> _children = new();
+        protected List<AbstractPanel> Children { get; } = new();
+        protected GameObject GameObject { get; private set; }
+
+        #endregion
+
+        #region Private Data
+
+        private readonly AbstractPanel _parent;
         private bool _isInit;
         private bool _isEnter;
         private bool _isSuspend;
-
         private readonly bool _isShowAfterExit;
+        private GameObject _mainCanvas;
+        private const string MainCanvasName = "MainCanvas";
 
-        protected IPanel(IPanel parent)
-        {
-            this._parent = parent;
-        }
+        #endregion
+
+        #region Public API
 
         public void GameUpdate()
         {
@@ -30,7 +37,7 @@ namespace Panels
                 OnInit();
             }
 
-            foreach (var child in _children)
+            foreach (var child in Children)
             {
                 child.GameUpdate();
             }
@@ -41,35 +48,42 @@ namespace Panels
             }
         }
 
-        public T GetPanel<T>() where T : IPanel
+        public T GetPanel<T>() where T : AbstractPanel
         {
-            return _children.FirstOrDefault(x => x is T) as T;
+            return Children.FirstOrDefault(x => x is T) as T;
         }
 
-        public void EnterPanel<T>() where T : IPanel
+        public void EnterPanel<T>() where T : AbstractPanel
         {
             var panel = GetPanel<T>();
             panel.Resume();
-            panel._isEnter = true;
             Suspend();
         }
 
         public void Suspend()
         {
             _isSuspend = true;
+            GameObject.SetActive(false);
         }
 
         public void Resume()
         {
             _isSuspend = false;
+            GameObject.SetActive(true);
         }
+
+        #endregion
+
+        #region Virtual Method
 
         protected virtual void OnInit()
         {
-            Suspend();
+            _isSuspend = true;
+            
+            _mainCanvas = UnityTool.Instance.FindGameObjectInScene(MainCanvasName);
             if (GameObject == null)
             {
-                GameObject = GameObject.Find(GetType().Name);
+                GameObject = UnityTool.Instance.FindGameObjectFromChildren(_mainCanvas, GetType().Name, true);
             }
 
             RectTransform = GameObject.GetComponent<RectTransform>();
@@ -98,6 +112,13 @@ namespace Panels
             _parent._isEnter = false;
             _parent.Resume();
             Suspend();
+        }
+
+        #endregion
+
+        protected AbstractPanel(AbstractPanel parent)
+        {
+            _parent = parent;
         }
     }
 }

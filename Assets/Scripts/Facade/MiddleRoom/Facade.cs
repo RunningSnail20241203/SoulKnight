@@ -1,3 +1,5 @@
+using System;
+using Controller;
 using Controller.MiddleRoom;
 using GameLoop;
 
@@ -7,6 +9,8 @@ namespace Facade.MiddleRoom
     {
         private PlayerController _playerController;
         private InputController _inputController;
+        private UIController _uiController;
+        private CameraSystem _cameraSystem;
 
         protected override void OnInit()
         {
@@ -14,9 +18,13 @@ namespace Facade.MiddleRoom
             
             _inputController = new InputController();
             _playerController = new PlayerController();
+            _uiController = new UIController();
+            _cameraSystem = new CameraSystem();
             
             GameMediator.Instance.RegisterController(_inputController);
             GameMediator.Instance.RegisterController(_playerController);
+            GameMediator.Instance.RegisterController(_uiController);
+            GameMediator.Instance.RegisterSystem(_cameraSystem);
         }
 
         protected override void OnUpdate()
@@ -24,6 +32,7 @@ namespace Facade.MiddleRoom
             base.OnUpdate();
             _inputController.GameUpdate();
             _playerController.GameUpdate();
+            _uiController.GameUpdate();
         }
     }
 }

@@ -10,7 +10,7 @@ namespace Model
 
         public ModelContainer()
         {
-            
+            _models.Add(typeof(SceneModel), new SceneModel());
         }
         
         public T GetModel<T>() where T : AbstractModel

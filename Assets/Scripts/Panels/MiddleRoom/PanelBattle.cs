@@ -1,8 +1,8 @@
 ﻿namespace Panels.MiddleRoom
 {
-    public class PanelBattle : IPanel
+    public class PanelBattle : AbstractPanel
     {
-        public PanelBattle(IPanel parent) : base(parent)
+        public PanelBattle(AbstractPanel parent) : base(parent)
         {
         }
     }

@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 645420169601549744}
   - component: {fileID: 645420169601549742}
   - component: {fileID: 645420169601549743}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Sprite
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -117,7 +117,7 @@ GameObject:
   m_Component:
   - component: {fileID: 645420170281648064}
   - component: {fileID: 645420170281648063}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Knight
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -173,7 +173,7 @@ GameObject:
   m_Component:
   - component: {fileID: 645420170371236877}
   - component: {fileID: 645420170371236876}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Collider
   m_TagString: Player
   m_Icon: {fileID: 0}
@@ -220,7 +220,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 645420170872056803}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: GunOriginPoint
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -251,7 +251,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 645420171483579349}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: BulletCheckBox
   m_TagString: Untagged
   m_Icon: {fileID: 0}

@@ -15,9 +15,12 @@ namespace Facade
 
         protected virtual void OnUpdate()
         {
-            if (_isInit) return;
-            _isInit = true;
-            OnInit();
+            if (!_isInit)
+            {
+                _isInit = true;
+                OnInit();
+                
+            }
         }
     }
 }

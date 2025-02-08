@@ -12,14 +12,14 @@ namespace Controller.MiddleRoom
         {
             base.OnInit();
 
-            MainPlayer = PlayerFactory.Instance.CreatePlayer(PlayerType.Knight);
-            MainPlayer.SetPlayerControlInput(GameMediator.Instance.GetController<InputController>().Input);
+            // MainPlayer = PlayerFactory.Instance.CreatePlayer(PlayerType.Knight);
+            // MainPlayer.SetPlayerControlInput(GameMediator.Instance.GetController<InputController>().Input);
         }
 
         protected override void AlwaysUpdate()
         {
             base.AlwaysUpdate();
-            MainPlayer.GameUpdate();
+            // MainPlayer.GameUpdate();
         }
     }
 }

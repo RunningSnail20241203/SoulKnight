@@ -3,7 +3,7 @@ using Button = UnityEngine.UI.Button;
 
 namespace Panels.MainMenuScene
 {
-    public class PanelRoot : IPanel
+    public class PanelRoot : AbstractPanel
     {
         public PanelRoot() : base(null)
         {
@@ -13,7 +13,7 @@ namespace Panels.MainMenuScene
         {
             base.OnInit();
 
-            UnityTool.Instance.GetComponentFromChildren<Button>(GameObject, "ButtonStart").onClick.AddListener(
+            UnityTool.Instance.FindComponentFromChildren<Button>(GameObject, "ButtonStart", true).onClick.AddListener(
                 () => { Debug.Log("开始游戏"); });
         }
     }

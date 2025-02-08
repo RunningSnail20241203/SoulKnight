@@ -63,7 +63,7 @@ namespace Weapon
      
         protected IPlayerWeapon(GameObject gameObject, ICharacter owner) : base(gameObject, owner)
         {
-            _rotOrigin = UnityTool.Instance.GetTransformFromChildren(gameObject, "RotOrigin");
+            _rotOrigin = UnityTool.Instance.FindTransformFromChildren(gameObject, "RotOrigin", true);
         }
     }
 }

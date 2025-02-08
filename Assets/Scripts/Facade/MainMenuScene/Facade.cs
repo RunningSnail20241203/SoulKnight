@@ -1,4 +1,4 @@
-using Controller.MainMenuScene;
+using Controller;
 using GameLoop;
 
 namespace Facade.MainMenuScene

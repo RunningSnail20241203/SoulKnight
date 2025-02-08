@@ -82,8 +82,8 @@ namespace Character
         protected IPlayer(GameObject gameObject) : base(gameObject)
         {
             _rigidbody2D = gameObject.GetComponent<Rigidbody2D>();
-            _animator = UnityTool.Instance.GetComponentFromChildren<Animator>(gameObject, "Sprite");
-            var playerRef = UnityTool.Instance.AddComponentForChildren<PlayerRef>(gameObject, "Collider");
+            _animator = UnityTool.Instance.FindComponentFromChildren<Animator>(gameObject, "Sprite", true);
+            var playerRef = UnityTool.Instance.AddComponentForChildren<PlayerRef>(gameObject, "Collider", true);
             playerRef.SetPlayer(this);
             StateMachine = new PlayerStateMachine(this);
         }

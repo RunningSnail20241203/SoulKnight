@@ -15,7 +15,7 @@ namespace Factory
 
         public async Task<IPlayerWeapon> GetPlayerWeapon(PlayerWeaponType playerWeaponType, ICharacter owner)
         {
-            var origin = UnityTool.Instance.GetComponentFromChildren<Transform>(owner.GameObject, WeaponOriginPoint);
+            var origin = UnityTool.Instance.FindTransformFromChildren(owner.GameObject, WeaponOriginPoint, true);
             var weaponName = playerWeaponType.ToString();
             var weaponPrefab = await ResourceFactory.Instance.GetWeapon(weaponName);
             var weaponObj = Object.Instantiate(weaponPrefab, origin);
