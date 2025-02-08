@@ -8,13 +8,15 @@ namespace Weapon
         public GameObject GameObject { get; protected set; }
         public Transform Transform => GameObject.transform;
         protected ICharacter Owner { get; set;}
+        protected bool IsCanRotate { get; private set; } // 控制武器能否被旋转
         private bool _isInit;
         private bool _isEnter;
 
-        public IWeapon(GameObject gameObject, ICharacter owner)
+        protected IWeapon(GameObject gameObject, ICharacter owner)
         {   
             GameObject = gameObject;
             Owner = owner;
+            IsCanRotate = true;
         }
 
         public void GameUpdate()
@@ -47,7 +49,10 @@ namespace Weapon
                 OnEnter();
             }
         }
-        protected virtual void OnEnter(){}
+
+        protected virtual void OnEnter()
+        {
+        }
 
         protected virtual void OnExit()
         {

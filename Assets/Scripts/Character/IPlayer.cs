@@ -1,3 +1,5 @@
+using System.Collections.Generic;
+using Controller.MiddleRoom;
 using Factory;
 using Mono;
 using StateMachine.PlayerStateMachine;
@@ -12,13 +14,16 @@ namespace Character
 
         private readonly Animator _animator;
         private readonly Rigidbody2D _rigidbody2D;
-        private IPlayerWeapon _playerWeapon;
+        private IPlayerWeapon _curWeapon;
+        private readonly List<IPlayerWeapon> _playerWeapons = new();
+        private Vector2 _mouseDir;
+        private PlayerControlInput _playerControlInput;
 
         #endregion
 
         #region Protected Data
 
-        protected PlayerStateMachine StateMachine;
+        protected readonly PlayerStateMachine StateMachine;
 
         #endregion
 
@@ -34,7 +39,42 @@ namespace Character
         public async void AddWeapon(PlayerWeaponType playerWeaponType)
         {
             var weapon = await WeaponFactory.Instance.GetPlayerWeapon(playerWeaponType, this);
-            _playerWeapon = weapon as IPlayerWeapon;
+            if (_playerWeapons.Count == 0)
+            {
+                weapon.UseWeapon();
+            }
+            else
+            {
+                weapon.UnUseWeapon();
+            }
+
+            _playerWeapons.Add(weapon);
+        }
+
+        public void SetPlayerControlInput(PlayerControlInput playerControlInput)
+        {
+            _playerControlInput = playerControlInput;
+        }
+
+        public void SwapWeapon()
+        {
+            if (_playerWeapons.Count == 0) return;
+            var index = _playerWeapons.FindIndex(x => x.IsUsed);
+            if (index < _playerWeapons.Count - 1)
+            {
+                index++;
+            }
+            else
+            {
+                index = 0;
+            }
+
+            if (_curWeapon != null)
+            {
+                _curWeapon.UnUseWeapon();
+            }
+
+            UseWeapon(_playerWeapons[index]);
         }
 
         #endregion
@@ -52,6 +92,23 @@ namespace Character
         {
             base.OnCharacterUpdate();
             StateMachine.GameUpdate();
+            if (Input.GetMouseButtonDown(1))
+            {
+                SwapWeapon();
+            }
+
+            if (_curWeapon != null)
+            {
+                _curWeapon.GameUpdate();
+                _curWeapon.ControlWeapon(_playerControlInput.IsAttack);
+                _curWeapon.RotateWeapon(_playerControlInput.WeaponAimPos);
+            }
+        }
+
+        private void UseWeapon(IPlayerWeapon weapon)
+        {
+            weapon.UseWeapon();
+            _curWeapon = weapon;
         }
     }
 }

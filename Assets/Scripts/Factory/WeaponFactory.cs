@@ -13,7 +13,7 @@ namespace Factory
     {
         private const string WeaponOriginPoint = "GunOriginPoint";
 
-        public async Task<IWeapon> GetPlayerWeapon(PlayerWeaponType playerWeaponType, ICharacter owner)
+        public async Task<IPlayerWeapon> GetPlayerWeapon(PlayerWeaponType playerWeaponType, ICharacter owner)
         {
             var origin = UnityTool.Instance.GetComponentFromChildren<Transform>(owner.GameObject, WeaponOriginPoint);
             var weaponName = playerWeaponType.ToString();
@@ -22,9 +22,10 @@ namespace Factory
             weaponObj.name = weaponName;
             weaponObj.transform.localPosition = Vector3.zero;
             
-            IWeapon ret = playerWeaponType switch
+            IPlayerWeapon ret = playerWeaponType switch
             {
                 PlayerWeaponType.BadPistol => new BadPistol(weaponObj, owner),
+                PlayerWeaponType.Ak47 => new Ak47(weaponObj, owner),
                 _ => null
             };
 
@@ -35,5 +36,6 @@ namespace Factory
     public enum PlayerWeaponType
     {
         BadPistol,
+        Ak47,
     }
 }
