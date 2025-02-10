@@ -1,14 +1,14 @@
 ﻿using UnityEngine;
 
-namespace StateMachine.PlayerStateMachine.Ranger
+namespace StateMachine.PlayerStateMachine.Rogue
 {
-    public class RangerIdleState : AbstractPlayerState
+    public class RogueIdleState : AbstractPlayerState
     {
         private static readonly int IsIdle = Animator.StringToHash("isIdle");
         private float _hor, _ver;
         private Vector2 _moveDir;
 
-        public RangerIdleState(PlayerStateMachine stateMachine) : base(stateMachine)
+        public RogueIdleState(PlayerStateMachine stateMachine) : base(stateMachine)
         {
         }
 
@@ -34,7 +34,7 @@ namespace StateMachine.PlayerStateMachine.Ranger
             _moveDir.Set(_hor, _ver);
             if (_moveDir.magnitude > 0f)
             {
-                StateMachine.SetState<RangerWalkState>();
+                StateMachine.SetState<RogueWalkState>();
             }
         }
     }

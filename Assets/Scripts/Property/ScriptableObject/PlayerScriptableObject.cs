@@ -1,12 +1,19 @@
 ﻿using System.Collections.Generic;
-using Attribute.ShareAttribute;
+using Property.ShareProperty;
 using UnityEngine;
+using Utility;
 
-namespace Attribute.ScriptableObject
+namespace Property.ScriptableObject
 {
     [CreateAssetMenu(fileName = "PlayerData", menuName = "ScriptableObject/PlayerData")]
     public class PlayerScriptableObject :UnityEngine.ScriptableObject
     {
         public List<PlayerAttr> playerAttrs = new ();
+        public TextAsset textAsset;
+
+        private void OnValidate()
+        {
+            UnityTool.Instance.WriteDataToList(playerAttrs, textAsset);
+        }
     }
 }

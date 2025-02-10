@@ -1,5 +1,6 @@
 ﻿using Character;
 using UnityEngine;
+using Utility;
 
 namespace Weapon
 {

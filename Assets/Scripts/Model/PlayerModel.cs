@@ -1,5 +1,5 @@
-﻿using Attribute.ScriptableObject;
-using Factory;
+﻿using Factory;
+using Property.ScriptableObject;
 
 namespace Model
 {

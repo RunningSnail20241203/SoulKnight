@@ -13,11 +13,34 @@ MonoBehaviour:
   m_Name: PlayerData
   m_EditorClassIdentifier: 
   playerAttrs:
-  - maxHp: 100
-    playerType: 1
-    initWeapon: 0
-    armor: 0
-  - maxHp: 100
-    playerType: 2
-    initWeapon: 1
-    armor: 0
+  - maxHp: 6
+    type: 1
+    defaultSkin: 100
+    skinTypes: 101
+    idleWeapon: 0
+    armor: 5
+    magic: 180
+    handleAttackDamage: 0
+    speed: 12
+    fightingSpeed: 7.5
+    isIdleLeft: 0
+    armorRecoveryTime: 1
+    hurtArmorRecoveryTime: 4
+    hurtInvincibleTime: 0.5
+    playerName: "\u9A91\u58EB"
+  - maxHp: 5
+    type: 2
+    defaultSkin: 200
+    skinTypes: 201
+    idleWeapon: 0
+    armor: 2
+    magic: 180
+    handleAttackDamage: 0
+    speed: 12
+    fightingSpeed: 7.5
+    isIdleLeft: 0
+    armorRecoveryTime: 1
+    hurtArmorRecoveryTime: 4
+    hurtInvincibleTime: 0.5
+    playerName: "\u6E38\u4FA0"
+  textAsset: {fileID: 4900000, guid: 2fbc61e229399fc478818fc9d8c79bdb, type: 3}

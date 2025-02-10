@@ -15,10 +15,7 @@ namespace StateMachine
                 _stateDic.Add(typeof(T), (AbstractState)Activator.CreateInstance(typeof(T), this));
             }
 
-            if (_currentState != null)
-            {
-                _currentState.OnExit();
-            }
+            _currentState?.OnExit();
             _currentState = _stateDic[typeof(T)];
         }
 

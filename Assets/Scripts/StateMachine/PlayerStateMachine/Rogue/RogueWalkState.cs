@@ -1,8 +1,8 @@
 ﻿using UnityEngine;
 
-namespace StateMachine.PlayerStateMachine.Ranger
+namespace StateMachine.PlayerStateMachine.Rogue
 {
-    public class RangerWalkState : AbstractPlayerState
+    public class RogueWalkState : AbstractPlayerState
     {
         private float _hor, _ver;
         private Vector2 _moveDir;
@@ -29,12 +29,12 @@ namespace StateMachine.PlayerStateMachine.Ranger
 
             if (_moveDir.magnitude == 0)
             {
-                StateMachine.SetState<RangerIdleState>();
+                StateMachine.SetState<RogueIdleState>();
             }
         }
 
 
-        public RangerWalkState(PlayerStateMachine stateMachine) : base(stateMachine)
+        public RogueWalkState(PlayerStateMachine stateMachine) : base(stateMachine)
         {
         }
     }

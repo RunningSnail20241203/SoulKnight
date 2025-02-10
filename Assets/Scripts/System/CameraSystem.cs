@@ -1,5 +1,6 @@
 ﻿using Cinemachine;
 using UnityEngine;
+using Utility;
 
 namespace System
 {
@@ -53,13 +54,13 @@ namespace System
             var cameraRoot = UnityTool.Instance.FindGameObjectInScene(CameraRoot);
             _staticCamera =
                 UnityTool.Instance.FindComponentFromChildren<CinemachineVirtualCamera>(cameraRoot,
-                    CameraType.StaticCamera.ToString(), true);
+                    CameraType.StaticCamera.ToString());
             _selectCamera =
                 UnityTool.Instance.FindComponentFromChildren<CinemachineVirtualCamera>(cameraRoot,
-                    CameraType.SelectCamera.ToString(), true);
+                    CameraType.SelectCamera.ToString());
             _followCamera =
                 UnityTool.Instance.FindComponentFromChildren<CinemachineVirtualCamera>(cameraRoot,
-                    CameraType.FollowCamera.ToString(), true);
+                    CameraType.FollowCamera.ToString());
         }
     }
 
