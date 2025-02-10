@@ -138,7 +138,7 @@ namespace Utility
                     {
                         var elementType = type.GetGenericArguments()[0];
                         var obj = Activator.CreateInstance(type) as IList;
-                        var paramLst = s.Split(',');
+                        var paramLst = s.Split('|');
                         foreach (var param in paramLst)
                         {
                             var convertedParam = ConvertType(param.Trim(), elementType);

@@ -6,6 +6,7 @@ namespace Model
     {
         public SceneName SceneName { get; private set; }
         public int SceneIndex { get; private set; }
+        public override bool IsInited => true;
 
         public void SetData(int index)
         {

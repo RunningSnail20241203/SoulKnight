@@ -118,7 +118,7 @@ GameObject:
   - component: {fileID: 645420170281648064}
   - component: {fileID: 645420170281648063}
   m_Layer: 7
-  m_Name: Ranger
+  m_Name: Rogue
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

@@ -16,7 +16,7 @@ namespace Panels.MainMenuScene
         {
             base.OnInit();
 
-            UnityTool.Instance.FindComponentFromChildren<Button>(GameObject, "ButtonStart", true).onClick.AddListener(
+            UnityTool.Instance.FindComponentFromChildren<Button>(GameObject, "ButtonStart").onClick.AddListener(
                 () => { SceneCommand.Instance.LoadScene(SceneName.MiddleRoomScene); });
         }
     }

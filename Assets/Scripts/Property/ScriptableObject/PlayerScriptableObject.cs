@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using Factory;
 using Property.ShareProperty;
 using UnityEngine;
 using Utility;
@@ -14,6 +15,11 @@ namespace Property.ScriptableObject
         private void OnValidate()
         {
             UnityTool.Instance.WriteDataToList(playerAttrs, textAsset);
+        }
+
+        public PlayerAttr GetPlayerAttr(PlayerType playerType)
+        {
+            return playerAttrs.Find(attr => attr.type == playerType);
         }
     }
 }

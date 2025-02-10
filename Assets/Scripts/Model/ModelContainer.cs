@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Linq;
 using Singleton;
 
 namespace Model
@@ -7,6 +8,7 @@ namespace Model
     public class ModelContainer : Singleton<ModelContainer>
     {
         private readonly Dictionary<Type, AbstractModel> _models = new();
+        public bool IsInited => _models.Values.All(x => x.IsInited);
 
         public ModelContainer()
         {

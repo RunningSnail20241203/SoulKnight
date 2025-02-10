@@ -16,7 +16,7 @@ MonoBehaviour:
   - maxHp: 6
     type: 1
     defaultSkin: 100
-    skinTypes: 101
+    skinTypes: 6400000065000000
     idleWeapon: 0
     armor: 5
     magic: 180
@@ -31,7 +31,7 @@ MonoBehaviour:
   - maxHp: 5
     type: 2
     defaultSkin: 200
-    skinTypes: 201
+    skinTypes: c8000000c9000000
     idleWeapon: 0
     armor: 2
     magic: 180

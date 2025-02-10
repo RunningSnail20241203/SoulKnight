@@ -7,16 +7,9 @@
             Children.Add(new PanelRoom(this));
         }
 
-        protected override void OnInit()
+        protected override void OnResume()
         {
-            base.OnInit();
-            
-            Resume();
-        }
-
-        protected override void OnEnter()
-        {
-            base.OnEnter();
+            base.OnResume();
             EnterPanel<PanelRoom>();
         }
     }

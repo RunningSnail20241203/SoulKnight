@@ -11,9 +11,9 @@ namespace Panels.MiddleRoom
         {
         }
 
-        protected override void OnEnter()
+        protected override void OnResume()
         {
-            base.OnEnter();
+            base.OnResume();
             var cameraSystem = GameMediator.Instance.GetSystem<CameraSystem>();
             var playerController = GameMediator.Instance.GetController<PlayerController>();
             cameraSystem.SwitchCamera(CameraType.FollowCamera);

@@ -5,6 +5,7 @@ using GameLoop;
 using Mediator;
 using Singleton;
 using UnityEngine;
+using Utility;
 
 namespace Factory
 {
@@ -12,7 +13,7 @@ namespace Factory
     {
         public AbstractPlayer GetPlayer(PlayerType playerType)
         {
-            var obj = GameObject.Find(playerType.ToString());
+            var obj = UnityTool.Instance.FindGameObjectInScene(playerType.ToString());
             AbstractPlayer player = playerType switch
             {
                 PlayerType.Knight => new Knight(obj),

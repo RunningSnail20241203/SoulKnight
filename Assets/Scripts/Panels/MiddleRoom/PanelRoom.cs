@@ -24,7 +24,6 @@ namespace Panels.MiddleRoom
         protected override void OnInit()
         {
             base.OnInit();
-            Resume();
             _cameraSystem = GameMediator.Instance.GetSystem<CameraSystem>();
         }
 
@@ -54,9 +53,9 @@ namespace Panels.MiddleRoom
             }
         }
 
-        protected override void OnEnter()
+        protected override void OnResume()
         {
-            base.OnEnter();
+            base.OnResume();
             _cameraSystem.SwitchCamera(CameraType.StaticCamera);
         }
     }

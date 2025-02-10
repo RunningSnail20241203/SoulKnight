@@ -10,7 +10,7 @@ namespace Factory
     public class ResourceFactory : Singleton<ResourceFactory>
     {
         private const string WeaponPath = "Weapon/PlayerWeapon/{0}.prefab";
-        private const string AnimatorPath = "Animator/Character/Player/{0}/{1}/{0}.controller";
+        private const string AnimatorPath = "Animation/Character/Player/{0}/{1}.controller";
         private const string DataPath = "Data/{0}.asset";
         private readonly Dictionary<string, object> _resourceCache = new();
         private readonly Dictionary<string, TaskCompletionSource<object>> _loadingTasks = new();
@@ -22,7 +22,7 @@ namespace Factory
             return await GetResource<GameObject>(path);
         }
 
-        public async Task<RuntimeAnimatorController> GetAnimator(string playerName, string skinName)
+        public async Task<RuntimeAnimatorController> GetAnimatorController(string playerName, string skinName)
         {
             var path = string.Format(AnimatorPath, playerName, skinName);
             return await GetResource<RuntimeAnimatorController>(path);

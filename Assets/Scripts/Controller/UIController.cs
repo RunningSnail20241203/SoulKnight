@@ -18,7 +18,7 @@ namespace Controller
                 SceneName.MiddleRoomScene => new Panels.MiddleRoom.PanelRoot(),
                 _ => _panelRoot
             };
-            
+            _panelRoot.EnterPanel();
         }
 
         protected override void AlwaysUpdate()
