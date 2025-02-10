@@ -63,8 +63,9 @@ namespace Character
             {
                 weapon.Destroy();
             }
+
             _playerWeapons.Clear();
-            
+
             _curWeapon?.Destroy();
             _curWeapon = null;
 
@@ -73,14 +74,7 @@ namespace Character
 
         #endregion
 
-        protected AbstractPlayer(GameObject gameObject) : base(gameObject)
-        {
-            PlayerRigidbody2D = gameObject.GetComponent<Rigidbody2D>();
-            PlayerAnimator = UnityTool.Instance.FindComponentFromChildren<Animator>(gameObject, "Sprite");
-            var playerRef = UnityTool.Instance.AddComponentForChildren<PlayerRef>(gameObject, "Collider", true);
-            playerRef.SetPlayer(this);
-            StateMachine = new PlayerStateMachine(this);
-        }
+        #region Override Methods
 
         protected override void OnCharacterUpdate()
         {
@@ -98,6 +92,10 @@ namespace Character
                 _curWeapon.RotateWeapon(_playerControlInput.WeaponAimPos);
             }
         }
+
+        #endregion
+
+        #region Private Methods
 
         private void UseWeapon(AbstractPlayerWeapon weapon)
         {
@@ -121,5 +119,20 @@ namespace Character
 
             UseWeapon(_playerWeapons[index]);
         }
+
+        #endregion
+
+        #region Protected Methods
+
+        protected AbstractPlayer(GameObject gameObject) : base(gameObject)
+        {
+            PlayerRigidbody2D = gameObject.GetComponent<Rigidbody2D>();
+            PlayerAnimator = UnityTool.Instance.FindComponentFromChildren<Animator>(gameObject, "Sprite");
+            var playerRef = UnityTool.Instance.AddComponentForChildren<PlayerRef>(gameObject, "Collider", true);
+            playerRef.SetPlayer(this);
+            StateMachine = new PlayerStateMachine(this);
+        }
+
+        #endregion
     }
 }

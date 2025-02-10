@@ -10,7 +10,8 @@ namespace Model
 
         public ModelContainer()
         {
-            _models.Add(typeof(SceneModel), new SceneModel());
+            AddModel(new PlayerModel());
+            AddModel(new SceneModel());
         }
         
         public T GetModel<T>() where T : AbstractModel
@@ -21,6 +22,11 @@ namespace Model
             }
 
             return default;
+        }
+
+        private void AddModel<T>(T model) where T : AbstractModel
+        {
+            _models.Add(typeof(T), model);
         }
     }
 }

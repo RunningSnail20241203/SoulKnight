@@ -16,6 +16,7 @@ namespace Factory
             AbstractPlayer player = playerType switch
             {
                 PlayerType.Knight => new Knight(obj),
+                PlayerType.Ranger => new Ranger(obj),
                 _ => null
             };
             if (player == null) return null;
@@ -28,6 +29,14 @@ namespace Factory
 
     public enum PlayerType
     {
+        None,
         Knight,
+        Ranger,
+    }
+    
+    public enum PlayerSkin
+    {
+        Base,
+        Kun,
     }
 }

@@ -103,7 +103,9 @@ namespace Utility
     public enum EventType
     {
         SceneLoadComplete,
+        SelectPlayerBegin,
         SelectPlayerFinish,
+        SelectPlayerCancel,
     }
 
     public abstract class AbstractEventInfo

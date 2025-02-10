@@ -2,7 +2,6 @@
 
 using Controller.MiddleRoom;
 using Factory;
-using GameLoop;
 using Mediator;
 using UnityEngine.UI;
 using Utility;
@@ -27,11 +26,12 @@ namespace Panels.MiddleRoom
         protected override void OnEnter()
         {
             base.OnEnter();
-            _curSelectPlayerType = PlayerType.Knight;
+            _curSelectPlayerType = GameMediator.Instance.GetController<PlayerController>().CurSelectPlayerType;
         }
 
         private void OnButtonBackClick()
         {
+            EventCenter.Instance.NotifyObserver(EventType.SelectPlayerCancel);
             Exit();
         }
 

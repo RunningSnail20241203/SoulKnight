@@ -1,9 +1,12 @@
 ﻿using System;
+using Factory;
 using GameLoop;
 using Mediator;
 using UnityEditor.Experimental.GraphView;
 using UnityEngine;
+using Utility;
 using CameraType = System.CameraType;
+using EventType = Utility.EventType;
 
 namespace Panels.MiddleRoom
 {
@@ -41,6 +44,10 @@ namespace Panels.MiddleRoom
                     {
                         _cameraSystem.SwitchCamera(CameraType.SelectCamera);
                         _cameraSystem.SetSelectTarget(_collider2D.transform.parent);
+                        if (Enum.TryParse(_collider2D.transform.parent.name, out PlayerType playerType))
+                        {
+                            EventCenter.Instance.NotifyObserver(EventType.SelectPlayerBegin, playerType);
+                        }
                         EnterPanel<PanelSelectPlayer>();
                     }
                 }

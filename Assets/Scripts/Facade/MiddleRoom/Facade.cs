@@ -1,6 +1,7 @@
 using System;
 using Controller;
 using Controller.MiddleRoom;
+using Factory;
 using GameLoop;
 using Mediator;
 using Utility;
@@ -29,6 +30,8 @@ namespace Facade.MiddleRoom
             GameMediator.Instance.RegisterSystem(_cameraSystem);
             
             EventCenter.Instance.RegisterObserver(EventType.SelectPlayerFinish, OnSelectPlayerFinish);
+            EventCenter.Instance.RegisterObserver<PlayerType>(EventType.SelectPlayerBegin, OnSelectPlayerBegin);
+            EventCenter.Instance.RegisterObserver(EventType.SelectPlayerCancel, OnSelectPlayerCancel);
         }
 
         protected override void OnUpdate()
@@ -43,6 +46,8 @@ namespace Facade.MiddleRoom
         {
             base.Destroy();
             EventCenter.Instance.RemoveObserver(EventType.SelectPlayerFinish, OnSelectPlayerFinish);
+            EventCenter.Instance.RemoveObserver<PlayerType>(EventType.SelectPlayerBegin, OnSelectPlayerBegin);
+            EventCenter.Instance.RemoveObserver(EventType.SelectPlayerCancel, OnSelectPlayerCancel);
             
             GameMediator.Instance.RemoveController(_inputController);
             GameMediator.Instance.RemoveController(_inputController);
@@ -63,6 +68,16 @@ namespace Facade.MiddleRoom
         private void OnSelectPlayerFinish()
         {
             _playerController.TurnOnController();
+        }
+
+        private void OnSelectPlayerBegin(PlayerType playerType)
+        {
+            _playerController.SetSelectPlayer(playerType);
+        }
+        
+        private void OnSelectPlayerCancel()
+        {
+            _playerController.ClearSelectPlayer();
         }
     }
 }
