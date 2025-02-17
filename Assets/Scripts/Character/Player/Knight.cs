@@ -7,7 +7,12 @@ namespace Character.Player
     {
         public Knight(GameObject gameObject) : base(gameObject)
         {
-            StateMachine.SetState<KnightIdleState>();
+        }
+
+        protected override void OnCharacterStart()
+        {
+            base.OnCharacterStart();
+            StateMachine = new KnightStateMachine(this);
         }
     }
 }

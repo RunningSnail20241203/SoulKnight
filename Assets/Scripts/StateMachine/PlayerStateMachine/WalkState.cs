@@ -1,13 +1,13 @@
 using UnityEngine;
 
-namespace StateMachine.PlayerStateMachine.Knight
+namespace StateMachine.PlayerStateMachine
 {
-    public class KnightWalkState : AbstractPlayerState
+    public class WalkState : AbstractPlayerState
     {
         private float _hor, _ver;
         private Vector2 _moveDir;
         
-        public KnightWalkState(PlayerStateMachine stateMachine) : base(stateMachine)
+        public WalkState(PlayerStateMachine stateMachine) : base(stateMachine)
         {
         }
 
@@ -22,19 +22,12 @@ namespace StateMachine.PlayerStateMachine.Knight
                 Rigidbody2D.transform.position += (Vector3)_moveDir.normalized * (8 * Time.deltaTime);
             }
 
-            if (_hor > 0)
+            Player.IsLeft = _hor switch
             {
-                Player.IsLeft = false;
-            }else if (_hor < 0)
-            {
-                Player.IsLeft = true;
-            }
-
-            if (_moveDir.magnitude == 0)
-            {
-                StateMachine.SetState<KnightIdleState>();
-            }
-            
+                > 0 => false,
+                < 0 => true,
+                _ => Player.IsLeft
+            };
         }
     }
 }

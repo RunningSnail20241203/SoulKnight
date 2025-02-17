@@ -20,8 +20,5 @@ namespace Factory
         }
     }
 
-    public enum PlayerBulletType
-    {
-        Bullet5,
-    }
+
 }

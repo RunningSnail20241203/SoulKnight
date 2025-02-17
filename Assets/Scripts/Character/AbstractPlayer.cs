@@ -131,7 +131,6 @@ namespace Character
             PlayerAnimator = UnityTool.Instance.FindComponentFromChildren<Animator>(gameObject, "Sprite");
             var playerRef = UnityTool.Instance.AddComponentForChildren<PlayerRef>(gameObject, "Collider", true);
             playerRef.SetPlayer(this);
-            StateMachine = new PlayerStateMachine(this);
         }
 
         #endregion

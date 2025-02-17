@@ -34,9 +34,5 @@ namespace Factory
         }
     }
 
-    public enum PlayerWeaponType
-    {
-        BadPistol,
-        Ak47,
-    }
+   
 }

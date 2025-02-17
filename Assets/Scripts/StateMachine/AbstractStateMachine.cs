@@ -5,8 +5,7 @@ namespace StateMachine
 {
     public abstract class AbstractStateMachine : IDestroy
     {
-        private readonly Dictionary<Type, AbstractState> _stateDic = new();
-        private AbstractState _currentState;
+        #region Public
 
         public void SetState<T>() where T : AbstractState
         {
@@ -15,26 +14,45 @@ namespace StateMachine
                 _stateDic.Add(typeof(T), (AbstractState)Activator.CreateInstance(typeof(T), this));
             }
 
-            _currentState?.OnExit();
-            _currentState = _stateDic[typeof(T)];
+            CurrentState?.OnExit();
+            CurrentState = _stateDic[typeof(T)];
         }
 
         public void StopCurrentState()
         {
-            _currentState?.OnExit();
+            CurrentState?.OnExit();
         }
 
         public void GameUpdate()
         {
-            if (_currentState != null)
+            if (CurrentState != null)
             {
-                _currentState.GameUpdate();
+                CurrentState.GameUpdate();
             }
+            OnUpdate();
         }
 
         public virtual void Destroy()
         {
             _stateDic.Clear();
         }
+
+        #endregion
+
+        #region Protected
+
+        protected AbstractState CurrentState;
+        protected virtual void OnUpdate()
+        {
+
+        }
+
+        #endregion
+
+        #region Private
+
+        private readonly Dictionary<Type, AbstractState> _stateDic = new();
+
+        #endregion
     }
 }

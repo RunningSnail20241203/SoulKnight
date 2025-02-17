@@ -28,24 +28,5 @@ namespace Factory
         }
     }
 
-    public enum PlayerType
-    {
-        None,
-        Knight,
-        Rogue,
-    }
-
-    public enum PlayerSkinType
-    {
-        None,
-        Knight = 100,
-        KnightLava,
-        Rogue = 200,
-        RogueKun,
-        Wizard = 300,
-        Assassin = 400,
-        Alchemist = 500,
-        Engineer = 600,
-        Vampire = 700,
-    }
+    
 }

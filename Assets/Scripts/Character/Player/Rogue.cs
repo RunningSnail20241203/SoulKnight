@@ -1,4 +1,6 @@
-﻿using StateMachine.PlayerStateMachine.Rogue;
+﻿using StateMachine.PlayerStateMachine;
+using StateMachine.PlayerStateMachine.Knight;
+using StateMachine.PlayerStateMachine.Rogue;
 using UnityEngine;
 
 namespace Character.Player
@@ -7,7 +9,12 @@ namespace Character.Player
     {
         public Rogue(GameObject gameObject) : base(gameObject)
         {
-            StateMachine.SetState<RogueIdleState>();
+        }
+
+        protected override void OnCharacterStart()
+        {
+            base.OnCharacterStart();
+            StateMachine = new RogueStateMachine(this);
         }
     }
 }

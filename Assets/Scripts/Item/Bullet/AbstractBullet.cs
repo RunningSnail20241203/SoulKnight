@@ -8,11 +8,6 @@ namespace Item.Bullet
     {
         #region Public API
 
-        public void GameUpdate()
-        {
-            OnUpdate();
-        }
-
         public void AddToController()
         {
             GameMediator.Instance.GetController<BulletController>().AddBullet(this);

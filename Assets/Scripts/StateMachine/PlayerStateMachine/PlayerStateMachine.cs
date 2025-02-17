@@ -1,4 +1,5 @@
 using Character;
+using UnityEngine;
 
 namespace StateMachine.PlayerStateMachine
 {
@@ -16,5 +17,17 @@ namespace StateMachine.PlayerStateMachine
             base.Destroy();
             Player = null;
         }
+
+        #region Protected
+
+        protected float Hor, Ver;
+        protected override void OnUpdate()
+        {
+            base.OnUpdate();
+            Hor = Input.GetAxis("Horizontal");
+            Ver = Input.GetAxis("Vertical");
+        }
+
+        #endregion
     }
 }

@@ -1,5 +1,4 @@
 ﻿using System.Collections.Generic;
-using Factory;
 using Property.ShareProperty;
 using UnityEngine;
 using Utility;
@@ -10,7 +9,7 @@ namespace Property.ScriptableObject
     public class PlayerDataSo : UnityEngine.ScriptableObject
     {
         public const string FileName = "PlayerDef";
-        public List<PlayerAttr> playerAttrs = new();
+        public List<PlayerShareAttr> playerAttrs = new();
         public TextAsset textAsset;
 
         private void OnValidate()
@@ -18,7 +17,7 @@ namespace Property.ScriptableObject
             UnityTool.Instance.WriteDataToList(playerAttrs, textAsset);
         }
 
-        public PlayerAttr GetPlayerAttr(PlayerType playerType)
+        public PlayerShareAttr GetPlayerAttr(PlayerType playerType)
         {
             return playerAttrs.Find(attr => attr.type == playerType);
         }

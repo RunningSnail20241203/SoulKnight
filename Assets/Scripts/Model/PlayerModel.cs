@@ -19,7 +19,7 @@ namespace Model
             });
         }
 
-        public PlayerAttr GetPlayerAttr(PlayerType playerType)
+        public PlayerShareAttr GetPlayerAttr(PlayerType playerType)
         {
             return _attr.GetPlayerAttr(playerType);
         }
