@@ -19,9 +19,9 @@ namespace Model
             });
         }
 
-        public PlayerWeaponShareShareAttr GetPlayerWeaponAttr(PlayerWeaponType weaponType)
+        public PlayerWeaponShareAttr GetAttr(PlayerWeaponType weaponType)
         {
-            return _attr.GetPlayerWeaponAttr(weaponType);
+            return _attr.GetAttr(weaponType);
         }
     }
 }

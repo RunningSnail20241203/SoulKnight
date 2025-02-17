@@ -12,7 +12,7 @@ namespace Property.ShareProperty
         [ReadOnly] public int damage; // 伤害
         [ReadOnly] public int magicSpend; // 魔法消耗
         [ReadOnly] public float criticalRate; // 暴击率
-        [ReadOnly] public int fireRate; // 射速
+        [ReadOnly] public float fireRate; // 射速
         [ReadOnly] public PlayerBulletType bulletType; // 子弹类型
         [ReadOnly] public float bulletSpeed; // 子弹速度
     }

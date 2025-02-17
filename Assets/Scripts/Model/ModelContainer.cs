@@ -15,6 +15,7 @@ namespace Model
             AddModel(new PlayerModel());
             AddModel(new SceneModel());
             AddModel(new PetModel());
+            AddModel(new WeaponModel());
         }
         
         public T GetModel<T>() where T : AbstractModel

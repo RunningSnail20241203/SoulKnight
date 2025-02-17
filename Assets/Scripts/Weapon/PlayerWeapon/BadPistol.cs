@@ -8,5 +8,11 @@ namespace Weapon.PlayerWeapon
         public BadPistol(GameObject gameObject, AbstractCharacter owner) : base(gameObject, owner)
         {
         }
+
+        #region Protected
+
+        protected override PlayerWeaponType WeaponType => PlayerWeaponType.BadPistol;
+
+        #endregion
     }
 }

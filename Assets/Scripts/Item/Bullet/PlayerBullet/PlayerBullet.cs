@@ -1,5 +1,4 @@
-﻿using Property.ShareProperty;
-using UnityEngine;
+﻿using UnityEngine;
 
 namespace Item.Bullet.PlayerBullet
 {

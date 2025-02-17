@@ -1,8 +1,7 @@
 ﻿using Character;
-using Controller.MiddleRoom;
+using Command;
 using Factory;
-using Item.Bullet.PlayerBullet;
-using Mediator;
+using Property.ShareProperty;
 using UnityEngine;
 using Utility;
 
@@ -11,6 +10,8 @@ namespace Weapon
     public class AbstractPlayerWeapon : AbstractWeapon
     {
         #region Public
+
+        public PlayerWeaponShareAttr ShareAttr { get; set; }
 
         public bool IsUsed { get; private set; }
 
@@ -25,7 +26,7 @@ namespace Weapon
             if (isAttack && Time.time > _nextFireTime)
             {
                 OnFire();
-                _nextFireTime = Time.time + FireInterval;
+                _nextFireTime = Time.time + 1f / ShareAttr.fireRate;
             }
         }
 
@@ -62,15 +63,16 @@ namespace Weapon
 
         #region Protected
 
+        protected virtual PlayerWeaponType WeaponType => PlayerWeaponType.None;
+
         async protected override void OnFire()
         {
             base.OnFire();
-            if (await BulletFactory.Instance.GetBullet(PlayerBulletType.Bullet5) is Bullet5 bullet)
-            {
-                bullet.SetPosition(_firePoint.position);
-                bullet.SetRotation(_rotOrigin.rotation);
-                bullet.AddToController();
-            }
+            var bullet = await BulletFactory.Instance.GetBullet(ShareAttr.bulletType);
+            bullet.SetFlySpeed(ShareAttr.bulletSpeed);
+            bullet.SetPosition(_firePoint.position);
+            bullet.SetRotation(_rotOrigin.rotation);
+            bullet.AddToController();
         }
 
         protected override void OnInit()
@@ -78,6 +80,7 @@ namespace Weapon
             base.OnInit();
             _firePoint = UnityTool.Instance.FindTransformFromChildren(GameObject, "FirePoint");
             _rotOrigin = UnityTool.Instance.FindTransformFromChildren(GameObject, "RotOrigin");
+            ShareAttr = WeaponCommand.Instance.GetAttr(WeaponType);
         }
 
         protected AbstractPlayerWeapon(GameObject gameObject, AbstractCharacter owner) : base(gameObject, owner)
@@ -93,7 +96,6 @@ namespace Weapon
         private Transform _rotOrigin;
         private Transform _firePoint;
         private float _nextFireTime;
-        private const float FireInterval = 0.1f;
 
         #endregion
     }

@@ -1,2 +1,3 @@
 type,category,quality,damage,magicSpend,criticalRate,fireRate,bulletType,bulletSpeed
-BadPistol,Pistol,White,3,0,0,4,Bullet5,30
+BadPistol,Pistol,White,3,0,0,2,Bullet5,20
+Ak47,Gun,White,4,0,0,5,Bullet5,50

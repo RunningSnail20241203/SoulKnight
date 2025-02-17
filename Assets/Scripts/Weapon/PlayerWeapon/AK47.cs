@@ -8,5 +8,11 @@ namespace Weapon.PlayerWeapon
         public Ak47(GameObject gameObject, AbstractCharacter owner) : base(gameObject, owner)
         {
         }
+
+        #region Protected
+
+        protected override PlayerWeaponType WeaponType => PlayerWeaponType.Ak47;
+
+        #endregion
     }
 }

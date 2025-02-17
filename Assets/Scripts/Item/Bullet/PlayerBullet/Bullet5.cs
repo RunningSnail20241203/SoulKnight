@@ -1,8 +1,6 @@
 ﻿using Controller.MiddleRoom;
 using Factory;
 using Item.Effect;
-using Mediator;
-using Property.ShareProperty;
 using UnityEngine;
 
 namespace Item.Bullet.PlayerBullet

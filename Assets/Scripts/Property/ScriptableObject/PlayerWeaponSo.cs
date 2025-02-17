@@ -9,14 +9,14 @@ namespace Property.ScriptableObject
     public class PlayerWeaponSo : UnityEngine.ScriptableObject
     {
         public const string FileName = "PlayerWeaponDef";
-        public List<PlayerWeaponShareShareAttr> playerWeaponAttrs = new();
+        public List<PlayerWeaponShareAttr> playerWeaponAttrs = new();
         public TextAsset textAsset;
         private void OnValidate()
         {
             UnityTool.Instance.WriteDataToList(playerWeaponAttrs, textAsset);
         }
 
-        public PlayerWeaponShareShareAttr GetPlayerWeaponAttr(PlayerWeaponType playerWeaponType)
+        public PlayerWeaponShareAttr GetAttr(PlayerWeaponType playerWeaponType)
         {
             return playerWeaponAttrs.Find(attr => attr.type == playerWeaponType);
         }

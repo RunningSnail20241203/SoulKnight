@@ -3,7 +3,7 @@
 namespace Property.ShareProperty
 {
     [Serializable]
-    public class PlayerWeaponShareShareAttr : WeaponShareAttr
+    public class PlayerWeaponShareAttr : WeaponShareAttr
     {
      
     }

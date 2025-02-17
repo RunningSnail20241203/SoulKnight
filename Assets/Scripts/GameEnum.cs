@@ -28,13 +28,15 @@ public enum PlayerSkinType
 
 public enum PlayerWeaponType
 {
+    None,
     BadPistol,
     Ak47,
 }
 
 public enum WeaponCategory
 {
-    Pistol
+    Pistol,
+    Gun,
 }
 
 public enum PlayerBulletType

@@ -12,6 +12,11 @@ namespace Item.Bullet
         {
             GameMediator.Instance.GetController<BulletController>().AddBullet(this);
         }
+
+        public void SetFlySpeed(float speed)
+        {
+            _speed = speed;
+        }
         
         #endregion
 
@@ -37,7 +42,7 @@ namespace Item.Bullet
         protected override void OnUpdate()
         {
             base.OnUpdate();
-            Transform.position += Transform.right * (Speed * Time.deltaTime);
+            Transform.position += Transform.right * (_speed * Time.deltaTime);
             if(Physics2D.OverlapCircle(Transform.position, 0.1f, LayerMask.GetMask(ObstacleLayer)))
             {
                 OnHitObstacle();
@@ -49,7 +54,7 @@ namespace Item.Bullet
 
         #region Private
 
-        private const float Speed = 30f;
+        private float _speed = 30f;
         private const string ObstacleLayer = "Obstacle";
 
         #endregion
