@@ -6,7 +6,7 @@ namespace StateMachine.PlayerStateMachine.Rogue
     {
         public RogueStateMachine(AbstractPlayer player) : base(player)
         {
-            SetState<IdleState>();
+            SetState<PlayerIdleState>();
         }
         
         protected override void OnUpdate()
@@ -14,19 +14,19 @@ namespace StateMachine.PlayerStateMachine.Rogue
             base.OnUpdate();
             switch (CurrentState)
             {
-                case IdleState:
+                case PlayerIdleState:
                 {
                     if (Ver != 0 || Hor != 0)
                     {
-                        SetState<WalkState>();
+                        SetState<PlayerWalkState>();
                     }
                     break;
                 }
-                case WalkState:
+                case PlayerWalkState:
                 {
                     if (Ver == 0 && Hor == 0)
                     {
-                        SetState<IdleState>();
+                        SetState<PlayerIdleState>();
                     }
                     break;
                 }

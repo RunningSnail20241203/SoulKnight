@@ -1,6 +1,6 @@
 ﻿using System.Collections.Generic;
-using Factory;
 using Model;
+using Property.ShareProperty;
 using Singleton;
 namespace Command
 {
@@ -8,9 +8,14 @@ namespace Command
     {
         public List<PlayerSkinType> GetSkinTypes(PlayerType playerType)
         {
-            var playerModel = ModelContainer.Instance.GetModel<PlayerModel>();
-            var attrs = playerModel.GetPlayerAttr(playerType);
+            var attrs = GetAttr(playerType);
             return attrs.skinTypes;
+        }
+
+        public PlayerShareAttr GetAttr(PlayerType playerType)
+        {
+            var playerModel = ModelContainer.Instance.GetModel<PlayerModel>();
+            return playerModel.GetPlayerAttr(playerType);
         }
     }
 }

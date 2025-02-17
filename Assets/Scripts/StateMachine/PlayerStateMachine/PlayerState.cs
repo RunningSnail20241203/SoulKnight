@@ -3,19 +3,24 @@ using UnityEngine;
 
 namespace StateMachine.PlayerStateMachine
 {
-    public abstract class AbstractPlayerState : AbstractState
+    public abstract class PlayerState : AbstractState
     {
-        #region Property
+        #region Private
+        private PlayerStateMachine PlayerStateMachine => StateMachine as PlayerStateMachine;
+        #endregion
+
+
+
+
+        #region Protected
+
         protected AbstractPlayer Player => PlayerStateMachine.Player;
         protected GameObject GameObject => Player.GameObject;
         protected Transform Transform => Player.Transform;
         protected Rigidbody2D Rigidbody2D => Player.PlayerRigidbody2D;
         protected Animator Animator => Player.PlayerAnimator;
-        private PlayerStateMachine PlayerStateMachine => StateMachine as PlayerStateMachine;
+        protected PlayerState(PlayerStateMachine stateMachine) : base(stateMachine) { }
+
         #endregion
-
-
-        protected AbstractPlayerState(PlayerStateMachine stateMachine) : base(stateMachine) { }
-
     }
 }

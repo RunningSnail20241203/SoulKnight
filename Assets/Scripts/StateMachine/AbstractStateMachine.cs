@@ -7,22 +7,6 @@ namespace StateMachine
     {
         #region Public
 
-        public void SetState<T>() where T : AbstractState
-        {
-            if (!_stateDic.ContainsKey(typeof(T)))
-            {
-                _stateDic.Add(typeof(T), (AbstractState)Activator.CreateInstance(typeof(T), this));
-            }
-
-            CurrentState?.OnExit();
-            CurrentState = _stateDic[typeof(T)];
-        }
-
-        public void StopCurrentState()
-        {
-            CurrentState?.OnExit();
-        }
-
         public void GameUpdate()
         {
             if (CurrentState != null)
@@ -45,6 +29,17 @@ namespace StateMachine
         protected virtual void OnUpdate()
         {
 
+        }
+        
+        protected void SetState<T>() where T : AbstractState
+        {
+            if (!_stateDic.ContainsKey(typeof(T)))
+            {
+                _stateDic.Add(typeof(T), (AbstractState)Activator.CreateInstance(typeof(T), this));
+            }
+
+            CurrentState?.Exit();
+            CurrentState = _stateDic[typeof(T)];
         }
 
         #endregion

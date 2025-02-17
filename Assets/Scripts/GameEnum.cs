@@ -44,6 +44,17 @@ public enum PlayerBulletType
 
 #endregion
 
+#region 宠物相关
+
+public enum PetType
+{
+    None,
+    LittlePool,
+    MoreMoney,
+}
+
+#endregion
+
 
 #region 道具相关
 

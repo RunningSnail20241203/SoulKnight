@@ -9,10 +9,17 @@ namespace Character.Player
         {
         }
 
+
+        #region Protected
+
+        protected override PlayerType PlayerType => PlayerType.Knight;
+
         protected override void OnCharacterStart()
         {
             base.OnCharacterStart();
             StateMachine = new KnightStateMachine(this);
         }
+
+        #endregion
     }
 }

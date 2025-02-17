@@ -1,7 +1,10 @@
 using System.Collections.Generic;
+using Command;
 using Controller.MiddleRoom;
 using Factory;
+using Mediator;
 using Mono;
+using Property.ShareProperty;
 using StateMachine.PlayerStateMachine;
 using UnityEngine;
 using Utility;
@@ -11,29 +14,10 @@ namespace Character
 {
     public class AbstractPlayer : AbstractCharacter, IDestroy
     {
-        #region Private Data
-
-        private AbstractPlayerWeapon _curWeapon;
-        private readonly List<AbstractPlayerWeapon> _playerWeapons = new();
-        private PlayerControlInput _playerControlInput;
-
-        #endregion
-
-        #region Protected Data
-
-        protected PlayerStateMachine StateMachine;
-
-        #endregion
-
-        #region Property
-
+        #region Public
         public Animator PlayerAnimator { get; }
-
         public Rigidbody2D PlayerRigidbody2D { get; }
-
-        #endregion
-
-        #region Public API
+        public PlayerShareAttr ShareAttr { get; set; }
 
         public async void AddWeapon(PlayerWeaponType playerWeaponType)
         {
@@ -75,7 +59,13 @@ namespace Character
 
         #endregion
 
+        #region Protected
+
+        protected PlayerStateMachine StateMachine;
+
         #region Override Methods
+
+        protected virtual PlayerType PlayerType => PlayerType.None;
 
         protected override void OnCharacterUpdate()
         {
@@ -94,9 +84,35 @@ namespace Character
             }
         }
 
+        protected override void OnInit()
+        {
+            base.OnInit();
+
+            ShareAttr = PlayerCommand.Instance.GetAttr(PlayerType);
+            
+            var pet = PetFactory.Instance.GetPet(PetType.MoreMoney, this);
+            GameMediator.Instance.GetController<PlayerController>().AddPet(pet);
+        }
+
         #endregion
 
-        #region Private Methods
+        protected AbstractPlayer(GameObject gameObject) : base(gameObject)
+        {
+            PlayerRigidbody2D = gameObject.GetComponent<Rigidbody2D>();
+            PlayerAnimator = UnityTool.Instance.FindComponentFromChildren<Animator>(gameObject, "Sprite");
+            var playerRef = UnityTool.Instance.AddComponentForChildren<PlayerRef>(gameObject, "Collider");
+            playerRef.SetPlayer(this);
+            
+       
+        }
+
+        #endregion
+
+        #region Private
+
+        private AbstractPlayerWeapon _curWeapon;
+        private readonly List<AbstractPlayerWeapon> _playerWeapons = new();
+        private PlayerControlInput _playerControlInput;
 
         private void UseWeapon(AbstractPlayerWeapon weapon)
         {
@@ -119,18 +135,6 @@ namespace Character
             }
 
             UseWeapon(_playerWeapons[index]);
-        }
-
-        #endregion
-
-        #region Protected Methods
-
-        protected AbstractPlayer(GameObject gameObject) : base(gameObject)
-        {
-            PlayerRigidbody2D = gameObject.GetComponent<Rigidbody2D>();
-            PlayerAnimator = UnityTool.Instance.FindComponentFromChildren<Animator>(gameObject, "Sprite");
-            var playerRef = UnityTool.Instance.AddComponentForChildren<PlayerRef>(gameObject, "Collider", true);
-            playerRef.SetPlayer(this);
         }
 
         #endregion

@@ -12,5 +12,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 682bb50fe30b48b3be9e8d4bdbe8617f, type: 3}
   m_Name: PlayerWeaponDef
   m_EditorClassIdentifier: 
-  playerWeaponAttrs: []
-  textAsset: {fileID: 0}
+  playerWeaponAttrs:
+  - type: 0
+    category: 0
+    quality: 1
+    damage: 3
+    magicSpend: 0
+    criticalRate: 0
+    fireRate: 4
+    bulletType: 0
+    bulletSpeed: 30
+  textAsset: {fileID: 4900000, guid: a2f62223841fdd1489abcaebcd14fea2, type: 3}

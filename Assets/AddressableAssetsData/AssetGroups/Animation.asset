@@ -21,6 +21,7 @@ MonoBehaviour:
     m_Address: Animation
     m_ReadOnly: 0
     m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
   m_ReadOnly: 0
   m_Settings: {fileID: 11400000, guid: 1a0302147fd76164c8488453882cd011, type: 2}
   m_SchemaSet:

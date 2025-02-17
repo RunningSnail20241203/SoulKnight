@@ -1,3 +1,4 @@
+using System.Collections.Generic;
 using Character;
 using Factory;
 using GameLoop;
@@ -6,6 +7,8 @@ namespace Controller.MiddleRoom
 {
     public class PlayerController : AbstractController
     {
+        #region Public
+
         public AbstractPlayer MainPlayer { get; private set; }
         public PlayerType CurSelectPlayerType { get; private set; }
 
@@ -24,17 +27,36 @@ namespace Controller.MiddleRoom
             CurSelectPlayerType = PlayerType.None;
         }
         
-        protected override void OnAfterRunUpdate()
+        public void AddPet(AbstractPet pet)
         {
-            base.OnAfterRunUpdate();
-            MainPlayer?.GameUpdate();
+            _pets.Add(pet);
         }
-
+        
         public override void Destroy()
         {
             base.Destroy();
             MainPlayer?.Destroy();
             MainPlayer = null;
+            
+            _pets.ForEach(x=>x.Destroy());
+            _pets.Clear();
         }
+
+        #endregion
+        
+        #region Protected
+        protected override void OnAfterRunUpdate()
+        {
+            base.OnAfterRunUpdate();
+            MainPlayer?.GameUpdate();
+            _pets.ForEach(x=>x.GameUpdate());
+        }
+        #endregion
+
+        #region Private
+
+        private readonly List<AbstractPet> _pets = new();
+
+        #endregion
     }
 }

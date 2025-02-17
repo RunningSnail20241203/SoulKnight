@@ -7,7 +7,7 @@ namespace StateMachine.PlayerStateMachine
     {
         public AbstractPlayer Player { get; private set; }
 
-        public PlayerStateMachine(AbstractPlayer player)
+        protected PlayerStateMachine(AbstractPlayer player)
         {
             Player = player;
         }

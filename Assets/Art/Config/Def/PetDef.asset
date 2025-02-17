@@ -1,0 +1,26 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 90fb5429721148a7b84b2ab0e652977b, type: 3}
+  m_Name: PetDef
+  m_EditorClassIdentifier: 
+  petAttrs:
+  - maxHp: 6
+    type: 1
+    speed: 12
+    isIdleLeft: 0
+    petName: "\u5C0F\u6C60"
+  - maxHp: 5
+    type: 2
+    speed: 12
+    isIdleLeft: 0
+    petName: "\u94B1\u591A\u591A"
+  textAsset: {fileID: 4900000, guid: 434247ca972bad641ae9eb3132a3366d, type: 3}
