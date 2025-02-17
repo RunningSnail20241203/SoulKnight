@@ -83,7 +83,7 @@ namespace Utility
             }
         }
 
-        public void RemoveObserver(EventType eventType, UnityAction action)
+        public void UnRegisterObserver(EventType eventType, UnityAction action)
         {
             if (_eventDict.TryGetValue(eventType, out var value))
             {
@@ -91,7 +91,7 @@ namespace Utility
             }
         }
 
-        public void RemoveObserver<T>(EventType eventType, UnityAction<T> action)
+        public void UnRegisterObserver<T>(EventType eventType, UnityAction<T> action)
         {
             if (_eventDict.TryGetValue(eventType, out var value))
             {

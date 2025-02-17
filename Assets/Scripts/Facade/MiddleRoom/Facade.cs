@@ -1,8 +1,8 @@
 using System;
+using System.Collections.Generic;
 using Controller;
 using Controller.MiddleRoom;
 using Factory;
-using GameLoop;
 using Mediator;
 using Utility;
 
@@ -10,60 +10,26 @@ namespace Facade.MiddleRoom
 {
     public class Facade : AbstractFacade
     {
+        #region Private
         private PlayerController _playerController;
-        private InputController _inputController;
-        private UIController _uiController;
-        private CameraSystem _cameraSystem;
+        private List<AbstractController> _controllers;
+        private List<AbstractSystem> _systems;
 
-        protected override void OnInit()
+        private void RegisterEvent()
         {
-            base.OnInit();
-            
-            _inputController = new InputController();
-            _playerController = new PlayerController();
-            _uiController = new UIController();
-            _cameraSystem = new CameraSystem();
-            
-            GameMediator.Instance.RegisterController(_inputController);
-            GameMediator.Instance.RegisterController(_playerController);
-            GameMediator.Instance.RegisterController(_uiController);
-            GameMediator.Instance.RegisterSystem(_cameraSystem);
-            
             EventCenter.Instance.RegisterObserver(EventType.SelectPlayerFinish, OnSelectPlayerFinish);
             EventCenter.Instance.RegisterObserver<PlayerType>(EventType.SelectPlayerBegin, OnSelectPlayerBegin);
             EventCenter.Instance.RegisterObserver(EventType.SelectPlayerCancel, OnSelectPlayerCancel);
         }
 
-        protected override void OnUpdate()
+        private void UnRegisterEvent()
         {
-            base.OnUpdate();
-            _inputController.GameUpdate();
-            _playerController.GameUpdate();
-            _uiController?.GameUpdate();
+            EventCenter.Instance.UnRegisterObserver(EventType.SelectPlayerFinish, OnSelectPlayerFinish);
+            EventCenter.Instance.UnRegisterObserver<PlayerType>(EventType.SelectPlayerBegin, OnSelectPlayerBegin);
+            EventCenter.Instance.UnRegisterObserver(EventType.SelectPlayerCancel, OnSelectPlayerCancel);
         }
 
-        public override void Destroy()
-        {
-            base.Destroy();
-            EventCenter.Instance.RemoveObserver(EventType.SelectPlayerFinish, OnSelectPlayerFinish);
-            EventCenter.Instance.RemoveObserver<PlayerType>(EventType.SelectPlayerBegin, OnSelectPlayerBegin);
-            EventCenter.Instance.RemoveObserver(EventType.SelectPlayerCancel, OnSelectPlayerCancel);
-            
-            GameMediator.Instance.RemoveController(_inputController);
-            GameMediator.Instance.RemoveController(_inputController);
-            GameMediator.Instance.RemoveController(_inputController);
-            GameMediator.Instance.RemoveSystem(_cameraSystem);
-            
-            _inputController?.Destroy();
-            _playerController?.Destroy();
-            _uiController?.Destroy();
-            _cameraSystem?.Destroy();
-            
-            _inputController = null;
-            _playerController = null;
-            _uiController = null;
-            _cameraSystem = null;
-        }
+        #region Event Handler
 
         private void OnSelectPlayerFinish()
         {
@@ -78,6 +44,60 @@ namespace Facade.MiddleRoom
         private void OnSelectPlayerCancel()
         {
             _playerController.ClearSelectPlayer();
+        }
+
+        #endregion
+
+        #endregion
+
+        #region Protected
+
+        protected override void OnInit()
+        {
+            base.OnInit();
+
+            _playerController = new PlayerController();
+            _controllers = new List<AbstractController>
+            {
+                new InputController(),
+                _playerController,
+                new BulletController(),
+                new UIController(),
+                new EffectController(),
+            };
+
+            _systems = new List<AbstractSystem>
+            {
+                new CameraSystem(),
+            };
+            
+            _controllers.ForEach(x=>GameMediator.Instance.RegisterController(x));
+            _systems.ForEach(x=>GameMediator.Instance.RegisterSystem(x));
+
+            RegisterEvent();
+        }
+
+        protected override void OnUpdate()
+        {
+            base.OnUpdate();
+            _controllers.ForEach(x => x.GameUpdate());
+        }
+
+        #endregion
+       
+
+        public override void Destroy()
+        {
+            base.Destroy();
+            UnRegisterEvent();
+            
+            _controllers.ForEach(x=>GameMediator.Instance.RemoveController(x));
+            _controllers.ForEach(x=>x.Destroy());
+            _controllers.Clear();
+            
+            _systems.ForEach(x=>GameMediator.Instance.RemoveSystem(x));
+            _systems.ForEach(x=>x.Destroy());
+            _systems.Clear();
         }
     }
 }

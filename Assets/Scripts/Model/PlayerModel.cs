@@ -6,13 +6,13 @@ namespace Model
 {
     public class PlayerModel : AbstractModel
     {
-        private PlayerScriptableObject _attr;
+        private PlayerDataSo _attr;
 
         public override bool IsInited => _attr != null;
         
         public PlayerModel()
         {
-            var task = ResourceFactory.Instance.GetData<PlayerScriptableObject>("PlayerData");
+            var task = ResourceFactory.Instance.GetDef<PlayerDataSo>(PlayerDataSo.FileName);
             task.GetAwaiter().OnCompleted(() =>
             {
                 _attr = task.Result;

@@ -10,21 +10,20 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: bbb281ee3bf0b054c82ac2347e9e782c, type: 3}
-  m_Name: Config
+  m_Name: Prefab-Effect
   m_EditorClassIdentifier: 
-  m_GroupName: Config
+  m_GroupName: Prefab-Effect
   m_Data:
     m_SerializedData: []
-  m_GUID: 802b8b55e7d43a841854e8238c5b06cf
+  m_GUID: 052b202d7a2d91f428aec8884fcb1472
   m_SerializeEntries:
-  - m_GUID: 3acaacf2fc4f6904591741abeb4e047b
-    m_Address: Def
+  - m_GUID: f5bf28ea17ea7c64ab3998fe4e8aeca7
+    m_Address: Effect
     m_ReadOnly: 0
     m_SerializedLabels: []
-    FlaggedDuringContentUpdateRestriction: 0
   m_ReadOnly: 0
   m_Settings: {fileID: 11400000, guid: 1a0302147fd76164c8488453882cd011, type: 2}
   m_SchemaSet:
     m_Schemas:
-    - {fileID: 11400000, guid: 3e8f949ebfec80140a5f4ce2fa50be74, type: 2}
-    - {fileID: 11400000, guid: 22f07a6f095225043b8a11a449da0f20, type: 2}
+    - {fileID: 11400000, guid: 5e8da0d671a2a9f42bcdcb52596eda0b, type: 2}
+    - {fileID: 11400000, guid: 40ab7a69a4a73754d9d6b04339743c95, type: 2}

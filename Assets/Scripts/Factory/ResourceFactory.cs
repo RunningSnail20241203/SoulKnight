@@ -9,30 +9,15 @@ namespace Factory
 {
     public class ResourceFactory : Singleton<ResourceFactory>
     {
+        #region Private
+
         private const string WeaponPath = "Weapon/PlayerWeapon/{0}.prefab";
         private const string AnimatorPath = "Animation/Character/Player/{0}/{1}.controller";
-        private const string DataPath = "Data/{0}.asset";
+        private const string DefPath = "Def/{0}.asset";
+        private const string BulletPath = "Bullet/PlayerBullet/{0}.prefab";
+        private const string EffectPath = "Effect/{0}.prefab";
         private readonly Dictionary<string, object> _resourceCache = new();
         private readonly Dictionary<string, TaskCompletionSource<object>> _loadingTasks = new();
-
-
-        public async Task<GameObject> GetWeapon(string name)
-        {
-            var path = string.Format(WeaponPath, name);
-            return await GetResource<GameObject>(path);
-        }
-
-        public async Task<RuntimeAnimatorController> GetAnimatorController(string playerName, string skinName)
-        {
-            var path = string.Format(AnimatorPath, playerName, skinName);
-            return await GetResource<RuntimeAnimatorController>(path);
-        }
-
-        public async Task<T> GetData<T>(string name) where T : ScriptableObject
-        {
-            var path = string.Format(DataPath, name);
-            return await GetResource<T>(path);
-        }
 
         private async Task<T> GetResource<T>(string path) where T : class
         {
@@ -89,5 +74,41 @@ namespace Factory
 
             throw new InvalidCastException($"Loaded resource at path {path} cannot be cast to type {typeof(T).Name}.");
         }
+
+        #endregion
+
+        #region Public
+
+        public async Task<GameObject> GetWeapon(string name)
+        {
+            var path = string.Format(WeaponPath, name);
+            return await GetResource<GameObject>(path);
+        }
+
+        public async Task<RuntimeAnimatorController> GetAnimatorController(string playerName, string skinName)
+        {
+            var path = string.Format(AnimatorPath, playerName, skinName);
+            return await GetResource<RuntimeAnimatorController>(path);
+        }
+
+        public async Task<T> GetDef<T>(string name) where T : ScriptableObject
+        {
+            var path = string.Format(DefPath, name);
+            return await GetResource<T>(path);
+        }
+
+        public async Task<GameObject> GetBullet(string name)
+        {
+            var path = string.Format(BulletPath, name);
+            return await GetResource<GameObject>(path);
+        }
+
+        public async Task<GameObject> GetEffect(string name)
+        {
+            var path = string.Format(EffectPath, name);
+            return await GetResource<GameObject>(path);
+        }
+
+        #endregion
     }
 }

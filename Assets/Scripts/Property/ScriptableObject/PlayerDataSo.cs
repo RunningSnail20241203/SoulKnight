@@ -6,10 +6,11 @@ using Utility;
 
 namespace Property.ScriptableObject
 {
-    [CreateAssetMenu(fileName = "PlayerData", menuName = "ScriptableObject/PlayerData")]
-    public class PlayerScriptableObject :UnityEngine.ScriptableObject
+    [CreateAssetMenu(fileName = FileName, menuName = "ScriptableObject/PlayerDef")]
+    public class PlayerDataSo : UnityEngine.ScriptableObject
     {
-        public List<PlayerAttr> playerAttrs = new ();
+        public const string FileName = "PlayerDef";
+        public List<PlayerAttr> playerAttrs = new();
         public TextAsset textAsset;
 
         private void OnValidate()

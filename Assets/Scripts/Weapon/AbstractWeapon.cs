@@ -58,7 +58,10 @@ namespace Weapon
         {
             _isEnter = false;
         }
-        protected virtual void OnFire(){}
+        protected virtual void OnFire()
+        {
+            
+        }
         public virtual void Destroy()
         {
             Owner = null;

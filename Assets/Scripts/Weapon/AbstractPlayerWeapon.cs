@@ -1,4 +1,8 @@
 ﻿using Character;
+using Controller.MiddleRoom;
+using Factory;
+using Item.Bullet.PlayerBullet;
+using Mediator;
 using UnityEngine;
 using Utility;
 
@@ -6,10 +10,7 @@ namespace Weapon
 {
     public class AbstractPlayerWeapon : AbstractWeapon
     {
-        private bool _isAttack;
-        private readonly Transform _rotOrigin;
-
-        #region Property
+        #region Public
 
         public bool IsUsed { get; private set; }
 
@@ -19,16 +20,12 @@ namespace Weapon
             set => base.Owner = value;
         }
 
-        #endregion
-
-        #region Public API
-
         public void ControlWeapon(bool isAttack)
         {
-            if (_isAttack != isAttack && isAttack)
+            if (isAttack && Time.time > _nextFireTime)
             {
                 OnFire();
-                _isAttack = true;
+                _nextFireTime = Time.time + FireInterval;
             }
         }
 
@@ -62,10 +59,42 @@ namespace Weapon
         }
 
         #endregion
-     
+
+        #region Protected
+
+        async protected override void OnFire()
+        {
+            base.OnFire();
+            if (await BulletFactory.Instance.GetBullet(PlayerBulletType.Bullet5) is Bullet5 bullet)
+            {
+                bullet.SetPosition(_firePoint.position);
+                bullet.SetRotation(_rotOrigin.rotation);
+                bullet.AddToController();
+            }
+        }
+
+        protected override void OnInit()
+        {
+            base.OnInit();
+            _firePoint = UnityTool.Instance.FindTransformFromChildren(GameObject, "FirePoint");
+            _rotOrigin = UnityTool.Instance.FindTransformFromChildren(GameObject, "RotOrigin");
+        }
+
         protected AbstractPlayerWeapon(GameObject gameObject, AbstractCharacter owner) : base(gameObject, owner)
         {
-            _rotOrigin = UnityTool.Instance.FindTransformFromChildren(gameObject, "RotOrigin", true);
+
         }
+
+        #endregion
+
+        #region Private
+
+        private bool _isAttack;
+        private Transform _rotOrigin;
+        private Transform _firePoint;
+        private float _nextFireTime;
+        private const float FireInterval = 0.1f;
+
+        #endregion
     }
 }
