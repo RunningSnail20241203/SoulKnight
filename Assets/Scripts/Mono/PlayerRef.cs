@@ -1,5 +1,6 @@
 ﻿using System;
 using Character;
+using Character.Player;
 using UnityEngine;
 
 namespace Mono

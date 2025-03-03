@@ -1,4 +1,5 @@
 ﻿using Character;
+using Character.Pet;
 using UnityEngine;
 
 namespace StateMachine.PetStateMachine

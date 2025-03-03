@@ -1,6 +1,7 @@
 ﻿using System;
 using Character;
 using Character.Pet;
+using Character.Player;
 using Singleton;
 using Utility;
 

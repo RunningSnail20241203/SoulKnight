@@ -21,7 +21,7 @@ namespace Model
 
         public PlayerShareAttr GetPlayerAttr(PlayerType playerType)
         {
-            return _attr.GetPlayerAttr(playerType);
+            return _attr.GetAttr(playerType);
         }
     }
 }

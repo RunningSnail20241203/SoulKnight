@@ -4,9 +4,8 @@ using Attribute;
 namespace Property.ShareProperty
 {
     [Serializable]
-    public class WeaponShareAttr
+    public class WeaponShareAttr : AbstractShareAttr
     {
-        [ReadOnly] public PlayerWeaponType type; // 武器类型
         [ReadOnly] public WeaponCategory category; // 武器种类
         [ReadOnly] public ItemQualityType quality; // 武器品质
         [ReadOnly] public int damage; // 伤害

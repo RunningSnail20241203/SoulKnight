@@ -1,5 +1,7 @@
 using System.Collections.Generic;
 using Character;
+using Character.Pet;
+using Character.Player;
 using Factory;
 using GameLoop;
 

@@ -1,4 +1,5 @@
 ﻿using Character;
+using Character.Player;
 
 namespace StateMachine.PlayerStateMachine.Rogue
 {

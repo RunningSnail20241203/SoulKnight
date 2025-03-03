@@ -21,6 +21,19 @@ public enum PlayerSkinType
     Vampire = 700,
 }
 
+public enum EnemyType
+{
+    Boar,
+    DireBoar,
+    GoblinGuard,
+    EliteGoblinGuard,
+    GoblinShaman,
+    TrumpetFlower,
+    GunShark,
+    GoblinGiant,
+    Stake
+}
+
 #endregion
 
 
@@ -31,6 +44,19 @@ public enum PlayerWeaponType
     None,
     BadPistol,
     Ak47,
+}
+
+public enum EnemyWeaponType
+{
+    None,
+    Handgun,
+    Pike,
+    Bow,
+    Shotgun,
+    Blowpipe,
+    Hoe,
+    GoblinMagicStaff,
+    Hammer,
 }
 
 public enum WeaponCategory

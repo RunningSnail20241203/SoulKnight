@@ -1,4 +1,6 @@
 ﻿using Character;
+using Character.Pet;
+using Character.Player;
 using Pathfinding;
 using UnityEngine;
 using Utility;

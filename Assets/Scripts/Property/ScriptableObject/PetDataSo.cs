@@ -6,20 +6,20 @@ using Utility;
 namespace Property.ScriptableObject
 {
     [CreateAssetMenu(fileName = FileName, menuName = "ScriptableObject/PetDef")]
-    public class PetDataSo: UnityEngine.ScriptableObject
+    public class PetDataSo : UnityEngine.ScriptableObject
     {
         public const string FileName = "PetDef";
-        public List<PetShareAttr> petAttrs = new();
+        public List<PetShareAttr> attrs;
         public TextAsset textAsset;
 
         private void OnValidate()
         {
-            UnityTool.Instance.WriteDataToList(petAttrs, textAsset);
+            UnityTool.Instance.WriteDataToList(attrs, textAsset);
         }
 
-        public PetShareAttr GetPetAttr(PetType playerType)
+        public PetShareAttr GetAttr(PetType type)
         {
-            return petAttrs.Find(attr => attr.type == playerType);
+            return attrs.Find(attr => attr.type == type);
         }
     }
 }

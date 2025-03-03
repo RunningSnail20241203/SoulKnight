@@ -4,8 +4,8 @@ using Attribute;
 namespace Property.ShareProperty
 {
     [Serializable]
-    public class CharacterShareAttr :AbstractShareAttr
+    public class AbstractShareAttr
     {
-        [ReadOnly] public int maxHp;
+       
     }
 }

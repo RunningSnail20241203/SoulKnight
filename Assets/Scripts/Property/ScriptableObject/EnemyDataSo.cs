@@ -5,19 +5,18 @@ using Utility;
 
 namespace Property.ScriptableObject
 {
-    [CreateAssetMenu(fileName = FileName, menuName = "ScriptableObject/PlayerWeaponDef")]
-    public class PlayerWeaponSo : UnityEngine.ScriptableObject
+    [CreateAssetMenu(fileName = "EnemyDef", menuName = "ScriptableObject/EnemyDef")]
+    public class EnemyDataSo : UnityEngine.ScriptableObject
     {
-        public const string FileName = "PlayerWeaponDef";
-        public List<PlayerWeaponShareAttr> attrs;
+        public List<EnemyShareAttr> attrs;
         public TextAsset textAsset;
 
         private void OnValidate()
         {
             UnityTool.Instance.WriteDataToList(attrs, textAsset);
         }
-
-        public PlayerWeaponShareAttr GetAttr(PlayerWeaponType type)
+        
+        public EnemyShareAttr GetAttr(EnemyType type)
         {
             return attrs.Find(attr => attr.type == type);
         }

@@ -22,7 +22,7 @@ namespace Model
 
         public PetShareAttr GetPetAttr(PetType petType)
         {
-            return _attr.GetPetAttr(petType);
+            return _attr.GetAttr(petType);
         }
     }
 }

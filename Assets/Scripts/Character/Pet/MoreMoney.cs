@@ -1,4 +1,5 @@
-﻿using StateMachine.PetStateMachine.MoreMoney;
+﻿using Character.Player;
+using StateMachine.PetStateMachine.MoreMoney;
 using UnityEngine;
 
 namespace Character.Pet

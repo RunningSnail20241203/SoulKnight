@@ -7,7 +7,7 @@ namespace Property.ShareProperty
     [Serializable]
     public class PlayerShareAttr : CharacterShareAttr
     {
-        [ReadOnly] public PlayerType type; // 角色类型
+        [ReadOnly] public PlayerType type;
         [ReadOnly] public PlayerSkinType defaultSkin; // 默认皮肤
         [ReadOnly] public List<PlayerSkinType> skinTypes; // 皮肤列表
         [ReadOnly] public PlayerWeaponType idleWeapon; // 默认武器

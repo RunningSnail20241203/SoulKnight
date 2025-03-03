@@ -1,0 +1,10 @@
+type,isElite,weaponType,maxHp,damage,speed,isIdleLeft
+Boar,FALSE,None,8,2,2,FALSE
+DireBoar,FALSE,None,10,3,4,FALSE
+GoblinGuard,FALSE,Handgun,8,2,2,FALSE
+EliteGoblinGuard,FALSE,Shotgun,15,3,2,FALSE
+GoblinShaman,FALSE,GoblinMagicStaff,15,3,2,FALSE
+TrumpetFlower,FALSE,None,8,3,0,FALSE
+GunShark,TRUE,None,40,4,5,FALSE
+GoblinGiant,FALSE,Hammer,40,3,2,FALSE
+Stake,FALSE,None,99999,0,0,FALSE

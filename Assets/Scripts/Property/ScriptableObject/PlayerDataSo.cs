@@ -9,17 +9,17 @@ namespace Property.ScriptableObject
     public class PlayerDataSo : UnityEngine.ScriptableObject
     {
         public const string FileName = "PlayerDef";
-        public List<PlayerShareAttr> playerAttrs = new();
+        public List<PlayerShareAttr> attrs;
         public TextAsset textAsset;
 
         private void OnValidate()
         {
-            UnityTool.Instance.WriteDataToList(playerAttrs, textAsset);
+            UnityTool.Instance.WriteDataToList(attrs, textAsset);
         }
 
-        public PlayerShareAttr GetPlayerAttr(PlayerType playerType)
+        public PlayerShareAttr GetAttr(PlayerType type)
         {
-            return playerAttrs.Find(attr => attr.type == playerType);
+            return attrs.Find(attr => attr.type == type);
         }
     }
 }

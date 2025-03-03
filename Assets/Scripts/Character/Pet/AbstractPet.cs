@@ -1,9 +1,10 @@
-﻿using Command;
+﻿using Character.Player;
+using Command;
 using Property.ShareProperty;
 using StateMachine.PetStateMachine;
 using UnityEngine;
 
-namespace Character
+namespace Character.Pet
 {
     public class AbstractPet : AbstractCharacter, IDestroy
     {

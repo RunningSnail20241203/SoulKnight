@@ -10,7 +10,7 @@ using UnityEngine;
 using Utility;
 using Weapon;
 
-namespace Character
+namespace Character.Player
 {
     public class AbstractPlayer : AbstractCharacter, IDestroy
     {

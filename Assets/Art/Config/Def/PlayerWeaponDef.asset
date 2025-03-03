@@ -13,13 +13,22 @@ MonoBehaviour:
   m_Name: PlayerWeaponDef
   m_EditorClassIdentifier: 
   playerWeaponAttrs:
-  - type: 0
+  - type: 1
     category: 0
     quality: 1
     damage: 3
     magicSpend: 0
     criticalRate: 0
-    fireRate: 4
+    fireRate: 2
     bulletType: 0
-    bulletSpeed: 30
+    bulletSpeed: 20
+  - type: 2
+    category: 1
+    quality: 1
+    damage: 4
+    magicSpend: 0
+    criticalRate: 0
+    fireRate: 5
+    bulletType: 0
+    bulletSpeed: 50
   textAsset: {fileID: 4900000, guid: a2f62223841fdd1489abcaebcd14fea2, type: 3}

@@ -1,4 +1,6 @@
-﻿namespace Model
+﻿using Property.ScriptableObject;
+
+namespace Model
 {
     public abstract class AbstractModel
     {
